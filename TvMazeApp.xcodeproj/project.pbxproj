@@ -25,6 +25,8 @@
 		42A43979207E01B00067EF0C /* TvMazeAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43978207E01B00067EF0C /* TvMazeAppUITests.m */; };
 		42A43988207E02FA0067EF0C /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43987207E02FA0067EF0C /* TableViewCell.m */; };
 		42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A4398A207E0C8D0067EF0C /* DetailsViewController.m */; };
+		42FEDED620873219006ECC21 /* NSString+URLFriendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FEDED520873219006ECC21 /* NSString+URLFriendly.m */; };
+		42FEDED920874EF1006ECC21 /* PickShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FEDED820874EF1006ECC21 /* PickShowVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,10 @@
 		42A43987207E02FA0067EF0C /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		42A43989207E0C8D0067EF0C /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		42A4398A207E0C8D0067EF0C /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		42FEDED420873219006ECC21 /* NSString+URLFriendly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+URLFriendly.h"; sourceTree = "<group>"; };
+		42FEDED520873219006ECC21 /* NSString+URLFriendly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLFriendly.m"; sourceTree = "<group>"; };
+		42FEDED720874EF1006ECC21 /* PickShowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVC.h; sourceTree = "<group>"; };
+		42FEDED820874EF1006ECC21 /* PickShowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickShowVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,8 @@
 		42A43953207E01AE0067EF0C /* TvMazeApp */ = {
 			isa = PBXGroup;
 			children = (
+				42FEDED420873219006ECC21 /* NSString+URLFriendly.h */,
+				42FEDED520873219006ECC21 /* NSString+URLFriendly.m */,
 				42A43954207E01AE0067EF0C /* AppDelegate.h */,
 				42A43955207E01AE0067EF0C /* AppDelegate.m */,
 				42054FAB208615B2007B2285 /* NSArray+RandomObject.h */,
@@ -187,6 +195,8 @@
 				42A4398A207E0C8D0067EF0C /* DetailsViewController.m */,
 				42A43957207E01AE0067EF0C /* TableViewController.h */,
 				42A43958207E01AE0067EF0C /* TableViewController.m */,
+				42FEDED720874EF1006ECC21 /* PickShowVC.h */,
+				42FEDED820874EF1006ECC21 /* PickShowVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -342,6 +352,8 @@
 				42A43988207E02FA0067EF0C /* TableViewCell.m in Sources */,
 				42054FB020862C97007B2285 /* Show+Additions.m in Sources */,
 				4277767E2080B90C0098EB15 /* StripHTML.m in Sources */,
+				42FEDED920874EF1006ECC21 /* PickShowVC.m in Sources */,
+				42FEDED620873219006ECC21 /* NSString+URLFriendly.m in Sources */,
 				42A43964207E01B00067EF0C /* main.m in Sources */,
 				4297076B207F851B00D7E777 /* Show.m in Sources */,
 				42A43956207E01AE0067EF0C /* AppDelegate.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "DetailsViewController.h"
+#import "Show+Additions.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *detailsSummaryLabel;
@@ -20,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.showToBeDisplayed formatTitle];
     self.detailsTitleLabel.text = self.showToBeDisplayed.title;
     self.detailsSummaryLabel.text = [self.showToBeDisplayed.summary stripHtml];
     NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.showToBeDisplayed.imageURL]];

@@ -8,18 +8,12 @@
 
 #import "TableViewController.h"
 #import "NSArray+RandomObject.h"
+#import "../NSString+URLFriendly.m"
+#import "PickShowVC.h"
 
 @interface TableViewController ()
-{
-    NSMutableArray *showTitleArray;
-    NSMutableArray *showSummaryArray;
-    NSMutableArray *showRatingArray;
-    NSMutableArray *showImageURLArray;
-}
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
-
 @property NSDictionary * dataDict;
 
 @end
@@ -49,6 +43,10 @@
 - (void)getShowData
 {
     NSString * searchString = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    //NSString * searchString = [NSString makeURLFriendlyThisString:self.searchBar.text];
+    //NSString * searchString = self.searchBar.text;
+    //[searchString makeMeURLFriendly];
+    //NSLog(@"You Searched : %@", searchString);
     
     NSString *urlString = [NSString stringWithFormat: @"http://api.tvmaze.com/search/shows?q=%@", searchString];
     NSURL * searchURL = [NSURL URLWithString:urlString];
@@ -62,15 +60,18 @@
 
         // Check if we have any data from the response
         if (json.count == 0){ // If we got no results
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No Results"
-                                                                           message:@"Sorry! We could not find your movie!"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No Results"
+                                                                               message:@"Sorry! We could not find your movie!"
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {}];
+                
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
         } else { // If we got results
             // Initializing
             self.showsData = [[NSMutableArray alloc] init];
@@ -172,6 +173,17 @@
     if ([searchBar.text length] != 0){
         [self getShowData];
     }
+}
+
+- (IBAction)pickShowButtonPressed:(id)sender {
+    NSLog(@"Bar Button Pressed");
+    
+    // Initilize a Pick Show ViewController
+    PickShowVC* pickShowVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PickShow"];
+    
+    
+    // Present the Pick Show ViewController
+    [self.navigationController presentViewController:pickShowVC animated:YES completion:NULL];
 }
 
 // Memory warning
