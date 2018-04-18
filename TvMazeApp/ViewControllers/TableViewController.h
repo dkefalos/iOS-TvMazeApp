@@ -12,10 +12,8 @@
 #import "Show.h"
 #import "Movie.h"
 #import "TVSeries.h"
-#import "StripHTML.h"
 
-
-@interface TableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface TableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (strong, nonatomic) NSMutableArray <Show *> * showsData;

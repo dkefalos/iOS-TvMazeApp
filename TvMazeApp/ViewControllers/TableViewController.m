@@ -7,6 +7,7 @@
 //
 
 #import "TableViewController.h"
+#import "NSArray+RandomObject.h"
 
 @interface TableViewController ()
 {
@@ -15,8 +16,9 @@
     NSMutableArray *showRatingArray;
     NSMutableArray *showImageURLArray;
 }
-- (IBAction)searchButtonPressed:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 @property NSDictionary * dataDict;
 
@@ -27,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.searchTextField setDelegate:self];
+    [self.searchBar setDelegate:self];
     
     //creation of zero footer so the table doesnt create the empty rows
     self.listTableView.tableFooterView = [[UIView alloc]
@@ -41,12 +43,12 @@
 
 -(void)dismissKeyboard
 {
-    [self.searchTextField resignFirstResponder];
+    [self.searchBar resignFirstResponder];
 }
 
 - (void)getShowData
 {
-    NSString * searchString = [self.searchTextField.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSString * searchString = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
     NSString *urlString = [NSString stringWithFormat: @"http://api.tvmaze.com/search/shows?q=%@", searchString];
     NSURL * searchURL = [NSURL URLWithString:urlString];
@@ -154,33 +156,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Initialize a new ViewController
     DetailsViewController *detailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsViewController"];
-    detailsVC.showTitle = self.showsData[indexPath.row].title;
-    detailsVC.showSummary = [self.showsData[indexPath.row].summary stripHtml];
-    detailsVC.showImageURL = self.showsData[indexPath.row].imageURL;
+    
+    // Pass the parameter to the new controller
     detailsVC.showToBeDisplayed = self.showsData[indexPath.row];
-
+    
+    // Start the new ViewController
     [self.navigationController pushViewController:detailsVC animated:YES];
 }
 
-- (IBAction)searchButtonPressed:(UIButton *)sender
-{
-    if ([self.searchTextField.text length] != 0){
-        [self getShowData];
-    }
-}
-
-// TextField Functions
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
+// Search Bar Functions
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
-    return true;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if ([self.searchTextField.text length] != 0){
+    if ([searchBar.text length] != 0){
         [self getShowData];
     }
 }

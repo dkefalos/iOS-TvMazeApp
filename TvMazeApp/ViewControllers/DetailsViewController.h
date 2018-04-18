@@ -10,13 +10,10 @@
 #import "Show.h"
 #import "Movie.h"
 #import "TVSeries.h"
+#import "StripHTML.h"
 
 @interface DetailsViewController : UIViewController
 
-@property (strong, nonatomic) NSString *showTitle;
-@property (strong, nonatomic) NSString *showSummary;
-@property (strong, nonatomic) NSString *showImageURL;
-@property (strong, nonatomic) NSString *showRating;
 @property (strong, nonatomic) Show* showToBeDisplayed;
 
 @end

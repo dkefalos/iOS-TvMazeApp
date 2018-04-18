@@ -20,9 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.detailsTitleLabel.text = self.showTitle;
-    self.detailsSummaryLabel.text = self.showSummary;
-    NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.showImageURL]];
+    self.detailsTitleLabel.text = self.showToBeDisplayed.title;
+    self.detailsSummaryLabel.text = [self.showToBeDisplayed.summary stripHtml];
+    NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.showToBeDisplayed.imageURL]];
     self.detailsImageView.image = [UIImage imageWithData: data];
     self.detailsImageView.contentMode = UIViewContentModeScaleAspectFit;
     
