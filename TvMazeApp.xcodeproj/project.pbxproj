@@ -133,7 +133,7 @@
 				42A43955207E01AE0067EF0C /* AppDelegate.m */,
 				42054FAB208615B2007B2285 /* NSArray+RandomObject.h */,
 				42054FAC208615B2007B2285 /* NSArray+RandomObject.m */,
-				42FEDED320871D64006ECC21 /* External Sources */,
+				42FEDED320871D64006ECC21 /* ExternalSources */,
 				42FEDED220871D0E006ECC21 /* ViewControllers */,
 				42FEDED120871CC1006ECC21 /* Models */,
 				42A4395D207E01B00067EF0C /* Assets.xcassets */,
@@ -191,7 +191,7 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		42FEDED320871D64006ECC21 /* External Sources */ = {
+		42FEDED320871D64006ECC21 /* ExternalSources */ = {
 			isa = PBXGroup;
 			children = (
 				42054FA72085F032007B2285 /* Font Awesome 5 Free-Regular-400.otf */,
@@ -199,7 +199,7 @@
 				4277767C2080B90C0098EB15 /* StripHTML.h */,
 				4277767D2080B90C0098EB15 /* StripHTML.m */,
 			);
-			path = "External Sources";
+			path = ExternalSources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
