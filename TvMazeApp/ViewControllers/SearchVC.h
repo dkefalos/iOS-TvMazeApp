@@ -12,8 +12,9 @@
 #import "Show.h"
 #import "Movie.h"
 #import "TVSeries.h"
+#import "PickShowVCDelegate.h"
 
-@interface TableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchBarDelegate>
+@interface SearchVC : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchBarDelegate, PickShowVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (strong, nonatomic) UIViewController* PickVC;

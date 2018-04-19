@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickShowVCDelegate.h"
 
 @interface PickShowVC : UIViewController
+
+@property (weak, nonatomic) id <PickShowVCDelegate> kitsos;
 
 @end

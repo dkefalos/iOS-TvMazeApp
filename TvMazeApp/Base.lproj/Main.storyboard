@@ -14,7 +14,7 @@
         <!--TVMaze-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TableViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SearchVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,11 +113,17 @@
                                 <rect key="frame" x="154" y="119" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="TV Series"/>
+                                <connections>
+                                    <action selector="pickedTVSeries:" destination="r95-LB-073" eventType="touchUpInside" id="FuM-3k-LJQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="769-WA-thX">
                                 <rect key="frame" x="167" y="420" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Movie"/>
+                                <connections>
+                                    <action selector="pickedMovie:" destination="r95-LB-073" eventType="touchUpInside" id="I1O-36-XXO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

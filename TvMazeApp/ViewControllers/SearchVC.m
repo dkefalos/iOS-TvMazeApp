@@ -6,19 +6,19 @@
 //  Copyright © 2018 dk. All rights reserved.
 //
 
-#import "TableViewController.h"
+#import "SearchVC.h"
 #import "NSArray+RandomObject.h"
 #import "../NSString+URLFriendly.m"
 #import "PickShowVC.h"
 
-@interface TableViewController ()
+@interface SearchVC ()
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property NSDictionary * dataDict;
 
 @end
 
-@implementation TableViewController
+@implementation SearchVC
 
 - (void)viewDidLoad
 {
@@ -176,14 +176,53 @@
 }
 
 - (IBAction)pickShowButtonPressed:(id)sender {
-    NSLog(@"Bar Button Pressed");
-    
     // Initilize a Pick Show ViewController
     PickShowVC* pickShowVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PickShow"];
-    
+    pickShowVC.kitsos = self;
     
     // Present the Pick Show ViewController
     [self.navigationController presentViewController:pickShowVC animated:YES completion:NULL];
+}
+
+- (void)didPickShowType:(int)ShowTypeFlag
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    if(ShowTypeFlag == 0)
+    {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Series"
+                                                                       message:@"You are now searching for series"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else if (ShowTypeFlag == 1)
+    {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Movies"
+                                                                       message:@"You are now searching for movies"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Unknown Selection"
+                                                                       message:@"An Error has occured"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 // Memory warning

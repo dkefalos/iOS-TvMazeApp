@@ -16,7 +16,7 @@
 		4297076E207F853300D7E777 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297076D207F853300D7E777 /* Movie.m */; };
 		42970771207F854C00D7E777 /* TVSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 42970770207F854C00D7E777 /* TVSeries.m */; };
 		42A43956207E01AE0067EF0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43955207E01AE0067EF0C /* AppDelegate.m */; };
-		42A43959207E01AE0067EF0C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43958207E01AE0067EF0C /* TableViewController.m */; };
+		42A43959207E01AE0067EF0C /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43958207E01AE0067EF0C /* SearchVC.m */; };
 		42A4395C207E01AE0067EF0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A4395A207E01AE0067EF0C /* Main.storyboard */; };
 		42A4395E207E01B00067EF0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42A4395D207E01B00067EF0C /* Assets.xcassets */; };
 		42A43961207E01B00067EF0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A4395F207E01B00067EF0C /* LaunchScreen.storyboard */; };
@@ -53,6 +53,7 @@
 		42054FAC208615B2007B2285 /* NSArray+RandomObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObject.m"; sourceTree = "<group>"; };
 		42054FAE20862C97007B2285 /* Show+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Show+Additions.h"; sourceTree = "<group>"; };
 		42054FAF20862C97007B2285 /* Show+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Show+Additions.m"; sourceTree = "<group>"; };
+		426E1DEF20887507002D68EA /* PickShowVCDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVCDelegate.h; sourceTree = "<group>"; };
 		4277767C2080B90C0098EB15 /* StripHTML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripHTML.h; sourceTree = "<group>"; };
 		4277767D2080B90C0098EB15 /* StripHTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripHTML.m; sourceTree = "<group>"; };
 		42970769207F851B00D7E777 /* Show.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
@@ -64,8 +65,8 @@
 		42A43951207E01AE0067EF0C /* TvMazeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TvMazeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A43954207E01AE0067EF0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42A43955207E01AE0067EF0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		42A43957207E01AE0067EF0C /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		42A43958207E01AE0067EF0C /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		42A43957207E01AE0067EF0C /* SearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVC.h; sourceTree = "<group>"; };
+		42A43958207E01AE0067EF0C /* SearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
 		42A4395B207E01AE0067EF0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		42A4395D207E01B00067EF0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42A43960207E01B00067EF0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -189,14 +190,15 @@
 		42FEDED220871D0E006ECC21 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				42A43986207E02FA0067EF0C /* TableViewCell.h */,
-				42A43987207E02FA0067EF0C /* TableViewCell.m */,
+				42A43957207E01AE0067EF0C /* SearchVC.h */,
+				42A43958207E01AE0067EF0C /* SearchVC.m */,
 				42A43989207E0C8D0067EF0C /* DetailsViewController.h */,
 				42A4398A207E0C8D0067EF0C /* DetailsViewController.m */,
-				42A43957207E01AE0067EF0C /* TableViewController.h */,
-				42A43958207E01AE0067EF0C /* TableViewController.m */,
 				42FEDED720874EF1006ECC21 /* PickShowVC.h */,
 				42FEDED820874EF1006ECC21 /* PickShowVC.m */,
+				426E1DEF20887507002D68EA /* PickShowVCDelegate.h */,
+				42A43986207E02FA0067EF0C /* TableViewCell.h */,
+				42A43987207E02FA0067EF0C /* TableViewCell.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -344,7 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42A43959207E01AE0067EF0C /* TableViewController.m in Sources */,
+				42A43959207E01AE0067EF0C /* SearchVC.m in Sources */,
 				42970771207F854C00D7E777 /* TVSeries.m in Sources */,
 				42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */,
 				4297076E207F853300D7E777 /* Movie.m in Sources */,

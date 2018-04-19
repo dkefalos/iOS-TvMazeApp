@@ -13,6 +13,15 @@
 @end
 
 @implementation PickShowVC
+- (IBAction)pickedTVSeries:(UIButton *)sender
+{
+    [self.kitsos didPickShowType:0];
+}
+
+- (IBAction)pickedMovie:(UIButton *)sender
+{
+    [self.kitsos didPickShowType:1];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
