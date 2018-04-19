@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class PickShowVC;
 @protocol PickShowVCDelegate <NSObject>
 
--(void) didPickShowType:(int)ShowTypeFlag;
+- (void)didPickShowType:(int)ShowTypeFlag;
+- (void)PickShowTypeVC:(PickShowVC*)pickShowTypeVC
+       didPickShowType:(int)ShowTypeFlag;
 
 @end

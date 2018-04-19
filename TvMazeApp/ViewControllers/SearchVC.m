@@ -123,6 +123,7 @@
     [dataTask resume];
 }
 
+#pragma mark - Table View Functions
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
     return self.showsData.count;
@@ -168,7 +169,7 @@
     [self.navigationController pushViewController:detailsVC animated:YES];
 }
 
-// Search Bar Functions
+#pragma mark - Search Bar Functions
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     if ([searchBar.text length] != 0){
@@ -176,10 +177,11 @@
     }
 }
 
+#pragma mark - Pick Show VC Protocol
 - (IBAction)pickShowButtonPressed:(id)sender {
     // Initilize a Pick Show ViewController
     PickShowVC* pickShowVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PickShow"];
-    pickShowVC.kitsos = self;
+    pickShowVC.delegate = self;
     
     // Present the Pick Show ViewController
     [self.navigationController presentViewController:pickShowVC animated:YES completion:NULL];
@@ -193,8 +195,8 @@
         //Separating the selections
         if(ShowTypeFlag == 0) // TV series
         {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Series"
-                                                                           message:@"You are now searching for series"
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"TV series"
+                                                                           message:@"You are now searching for TV series"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
@@ -228,6 +230,12 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
     }];
+}
+
+- (void)PickShowTypeVC:(PickShowVC*)pickShowTypeVC
+       didPickShowType:(int)ShowTypeFlag {
+    //We will not need the Pick Show VC for now, so we are using the other protocol method in this one
+    [self didPickShowType:ShowTypeFlag];
 }
 
 // Memory warning

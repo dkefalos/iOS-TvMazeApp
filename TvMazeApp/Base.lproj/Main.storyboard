@@ -114,15 +114,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="TV Series"/>
                                 <connections>
-                                    <action selector="pickedTVSeries:" destination="r95-LB-073" eventType="touchUpInside" id="FuM-3k-LJQ"/>
+                                    <action selector="aButtonIsPressed:" destination="r95-LB-073" eventType="touchUpInside" id="o7v-FH-49W"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="769-WA-thX">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="769-WA-thX">
                                 <rect key="frame" x="167" y="420" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Movie"/>
                                 <connections>
-                                    <action selector="pickedMovie:" destination="r95-LB-073" eventType="touchUpInside" id="I1O-36-XXO"/>
+                                    <action selector="aButtonIsPressed:" destination="r95-LB-073" eventType="touchUpInside" id="5H8-7l-Wq2"/>
                                 </connections>
                             </button>
                         </subviews>

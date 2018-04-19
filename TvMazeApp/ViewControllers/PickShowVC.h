@@ -11,6 +11,6 @@
 
 @interface PickShowVC : UIViewController
 
-@property (weak, nonatomic) id <PickShowVCDelegate> kitsos;
+@property (weak, nonatomic) id <PickShowVCDelegate> delegate;
 
 @end
