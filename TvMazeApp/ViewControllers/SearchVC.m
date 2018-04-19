@@ -132,12 +132,13 @@
 {
     static NSString *simpleTableIdentifier = @"showCell";
     
+    // use the cells we have on the storyboard
     TableViewCell *cell = (TableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
     if (cell == nil) {
         cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+    // Add the data to the corresponding UI Elements
     cell.showTitleLabel.text = self.showsData[indexPath.row].title;
     cell.showRatingLabel.text = [NSString stringWithFormat:@"%@", self.showsData[indexPath.row].rating];
     cell.showSummaryLabel.text = self.showsData[indexPath.row].summary;
@@ -186,43 +187,47 @@
 
 - (void)didPickShowType:(int)ShowTypeFlag
 {
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    if(ShowTypeFlag == 0)
-    {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Series"
-                                                                       message:@"You are now searching for series"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else if (ShowTypeFlag == 1)
-    {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Movies"
-                                                                       message:@"You are now searching for movies"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else
-    {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Unknown Selection"
-                                                                       message:@"An Error has occured"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+    // Dismissing the pick VC to have the alerts
+    [self dismissViewControllerAnimated:YES completion:^{
+    
+        //Separating the selections
+        if(ShowTypeFlag == 0) // TV series
+        {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Series"
+                                                                           message:@"You are now searching for series"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else if (ShowTypeFlag == 1) // Movies
+        {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Movies"
+                                                                           message:@"You are now searching for movies"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else // Unknown
+        {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Unknown Selection"
+                                                                           message:@"An Error has occured"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
 }
 
 // Memory warning

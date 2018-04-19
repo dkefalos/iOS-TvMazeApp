@@ -20,7 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Set the data to the corresponding UI Elements
     [self.showToBeDisplayed formatTitle];
     self.detailsTitleLabel.text = self.showToBeDisplayed.title;
     self.detailsSummaryLabel.text = [self.showToBeDisplayed.summary stripHtml];
@@ -28,6 +29,7 @@
     self.detailsImageView.image = [UIImage imageWithData: data];
     self.detailsImageView.contentMode = UIViewContentModeScaleAspectFit;
     
+    // Use selector to get the appropriate summary type
     if([self.showToBeDisplayed respondsToSelector:@selector(getMovieSummary)]){
         [self.showToBeDisplayed performSelector:@selector(getMovieSummary)];
     } else if ([self.showToBeDisplayed respondsToSelector:@selector(getEpisodeSummary)]){

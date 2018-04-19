@@ -86,7 +86,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="TVMaze" id="FYc-k9-ZBu">
                         <barButtonItem key="backBarButtonItem" title="back" id="y7G-v7-Yp9"/>
-                        <barButtonItem key="rightBarButtonItem" title="Pick Show Type" id="bxQ-dh-KZU">
+                        <barButtonItem key="rightBarButtonItem" title="Show Type" id="bxQ-dh-KZU">
                             <connections>
                                 <action selector="pickShowButtonPressed:" destination="BYZ-38-t0r" id="uOF-ww-xI4"/>
                             </connections>
