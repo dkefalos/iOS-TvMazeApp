@@ -57,6 +57,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="FYd-E1-zBz" secondAttribute="bottom" constant="10" id="dwH-Tu-Mgb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="showImageView" destination="FYd-E1-zBz" id="inH-u9-cUZ"/>
                                             <outlet property="showRatingLabel" destination="NPl-kv-kxP" id="QkA-Kw-5aw"/>

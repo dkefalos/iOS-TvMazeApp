@@ -7,7 +7,6 @@
 //
 
 #import "ImageFullScreenVC.h"
-#import "DetailsViewController.h"
 
 @interface ImageFullScreenVC ()
 @property (weak, nonatomic) IBOutlet UIImageView *fullScreenImageView;
@@ -31,7 +30,7 @@
 
 - (void) didClickView
 {
-    [self.delegate ImageFullScreenClicked];
+    [self.delegate fullScreenImageClicked];
 }
 
 - (void)didReceiveMemoryWarning {

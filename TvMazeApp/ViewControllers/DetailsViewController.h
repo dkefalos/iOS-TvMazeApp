@@ -13,10 +13,8 @@
 #import "StripHTML.h"
 #import "ImageFullScreenVC.h"
 
-@interface DetailsViewController : UIViewController
+@interface DetailsViewController : UIViewController <ImageFullScreenDelegate>
 
 @property (strong, nonatomic) Show* showToBeDisplayed;
-
-- (void) ImageFullScreenClicked;
 
 @end

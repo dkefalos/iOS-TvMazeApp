@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageFullScreenDelegate.h"
 
 @interface ImageFullScreenVC : UIViewController
 
 @property (weak,nonatomic) NSString* imageURL;
-@property (weak, nonatomic) id delegate;
+@property (weak, nonatomic) id <ImageFullScreenDelegate> delegate;
 
 @end

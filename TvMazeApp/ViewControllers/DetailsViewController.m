@@ -58,7 +58,7 @@
 }
 
 
-- (void) ImageFullScreenClicked
+- (void) fullScreenImageClicked
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }

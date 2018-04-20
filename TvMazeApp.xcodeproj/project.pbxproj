@@ -53,6 +53,7 @@
 		426E1DEF20887507002D68EA /* PickShowVCDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVCDelegate.h; sourceTree = "<group>"; };
 		426E1DF02088E8CC002D68EA /* ImageFullScreenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFullScreenVC.h; sourceTree = "<group>"; };
 		426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFullScreenVC.m; sourceTree = "<group>"; };
+		426E1DF32089DE37002D68EA /* ImageFullScreenDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFullScreenDelegate.h; sourceTree = "<group>"; };
 		4277767C2080B90C0098EB15 /* StripHTML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripHTML.h; sourceTree = "<group>"; };
 		4277767D2080B90C0098EB15 /* StripHTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripHTML.m; sourceTree = "<group>"; };
 		42970769207F851B00D7E777 /* Show.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
@@ -193,6 +194,7 @@
 				42A43958207E01AE0067EF0C /* SearchVC.m */,
 				426E1DF02088E8CC002D68EA /* ImageFullScreenVC.h */,
 				426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */,
+				426E1DF32089DE37002D68EA /* ImageFullScreenDelegate.h */,
 				42A43989207E0C8D0067EF0C /* DetailsViewController.h */,
 				42A4398A207E0C8D0067EF0C /* DetailsViewController.m */,
 				42FEDED720874EF1006ECC21 /* PickShowVC.h */,

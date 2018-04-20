@@ -31,11 +31,17 @@
                                       initWithFrame:CGRectZero];
     
     // Add a tap recognizer to the view, so that we can dismiss the keyboard
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    tap.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tapAnywhere = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    tapAnywhere.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapAnywhere];
     
+    // Hide loader when it is not showed
     self.loader.hidesWhenStopped = YES;
+}
+
+- (void)showFullScreenImage
+{
+    NSLog(@"Small image clicked");
 }
 
 -(void)dismissKeyboard
@@ -156,7 +162,13 @@
     NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.showsData[indexPath.row].imageURL]];
     cell.showImageView.image = [UIImage imageWithData: data];
     cell.showImageView.contentMode = UIViewContentModeScaleAspectFit;
-
+    /*
+    //Add a tap recognizer to the small image to show it full screen
+    UITapGestureRecognizer *tapSmallImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showFullScreenImage)];
+    tapSmallImage.cancelsTouchesInView = YES;
+    [cell.showImageView addGestureRecognizer:tapSmallImage];
+    cell.imageView.userInteractionEnabled = YES;
+*/
     return cell;
 }
 
@@ -170,10 +182,10 @@
 {
     // Initialize a new ViewController
     DetailsViewController *detailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsViewController"];
-    
+
     // Pass the parameter to the new controller
     detailsVC.showToBeDisplayed = self.showsData[indexPath.row];
-    
+
     // Start the new ViewController
     [self.navigationController pushViewController:detailsVC animated:YES];
 }
@@ -185,7 +197,6 @@
         [self.loader startAnimating];
         [self getShowData];
     }
-    
 }
 
 #pragma mark - Pick Show VC Protocol
