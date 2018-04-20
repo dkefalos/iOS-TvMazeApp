@@ -11,9 +11,12 @@
 #import "Movie.h"
 #import "TVSeries.h"
 #import "StripHTML.h"
+#import "ImageFullScreenVC.h"
 
 @interface DetailsViewController : UIViewController
 
 @property (strong, nonatomic) Show* showToBeDisplayed;
+
+- (void) ImageFullScreenClicked;
 
 @end

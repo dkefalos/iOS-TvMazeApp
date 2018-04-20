@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property NSDictionary * dataDict;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 
 @end
 
@@ -29,10 +30,12 @@
     self.listTableView.tableFooterView = [[UIView alloc]
                                       initWithFrame:CGRectZero];
     
-    // Add a tap recognizer to the view, so that we get
+    // Add a tap recognizer to the view, so that we can dismiss the keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
+    
+    self.loader.hidesWhenStopped = YES;
 }
 
 -(void)dismissKeyboard
@@ -79,20 +82,23 @@
             NSString* currentSummary;
             NSString* currentRating;
             NSString* currentImageURL;
+            NSString* currentBigImageURL;
             
             // Parsing the response and putting in an object we need
             for (NSDictionary* iterationObj in jsonObject) {
                 // Checking for Nullity and using the checked variables
                 currentSummary = ([iterationObj[@"summary"] isEqual:[NSNull null]] ? @"No Summary" : iterationObj[@"summary"]);
                 if ([iterationObj[@"rating"] isEqual:[NSNull null]]){
-                    currentRating = @"No Rating avalable";
+                    currentRating = @"No Rating avalable at all";
                 } else {
                     currentRating = ([iterationObj[@"rating"][@"average"] isEqual:[NSNull null]] ? @"No Rating avalable" : [NSString stringWithFormat:@"%.1lf/10", [iterationObj[@"rating"][@"average"] floatValue]]);
                 }
                 if ([iterationObj[@"image"] isEqual:[NSNull null]]){
                     currentImageURL = @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
+                    currentBigImageURL = @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
                 } else {
                     currentImageURL = ([iterationObj[@"image"][@"medium"] isEqual:[NSNull null]] ? @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png" : iterationObj[@"image"][@"medium"]);
+                    currentBigImageURL = ([iterationObj[@"image"][@"original"] isEqual:[NSNull null]] ? @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png" : iterationObj[@"image"][@"original"]);
                 }
                 
                 // Allocating and initializing the object
@@ -100,14 +106,16 @@
                     Show * curShow = [[Movie alloc] initMovieWithTitle:iterationObj[@"name"]
                                                                summary:currentSummary
                                                                 rating:currentRating
-                                                              imageURL:currentImageURL];
+                                                              imageURL:currentImageURL
+                                                           bigImageURL:currentBigImageURL];
                     // Adding it to the list of objects
                     [self.showsData addObject:curShow];
                 } else {
                     Show * curShow = [[TVSeries alloc] initSeriesWithTitle:iterationObj[@"name"]
                                                                    summary:currentSummary
                                                                     rating:currentRating
-                                                                  imageURL:currentImageURL];
+                                                                  imageURL:currentImageURL
+                                                               bigImageURL:currentBigImageURL];
                     // Adding it to the list of objects
                     [self.showsData addObject:curShow];
                 }
@@ -116,6 +124,7 @@
             
             // Reloading the table view data in the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
+                [self.loader stopAnimating];
                 [self.listTableView reloadData];
             });
         }
@@ -154,7 +163,7 @@
 //Customize cell height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 90;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -170,15 +179,18 @@
 }
 
 #pragma mark - Search Bar Functions
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
     if ([searchBar.text length] != 0){
+        [self.loader startAnimating];
         [self getShowData];
     }
+    
 }
 
 #pragma mark - Pick Show VC Protocol
-- (IBAction)pickShowButtonPressed:(id)sender {
+- (IBAction)pickShowButtonPressed:(id)sender
+{
     // Initilize a Pick Show ViewController
     PickShowVC* pickShowVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PickShow"];
     pickShowVC.delegate = self;
@@ -233,7 +245,8 @@
 }
 
 - (void)PickShowTypeVC:(PickShowVC*)pickShowTypeVC
-       didPickShowType:(int)ShowTypeFlag {
+       didPickShowType:(int)ShowTypeFlag
+{
     //We will not need the Pick Show VC for now, so we are using the other protocol method in this one
     [self didPickShowType:ShowTypeFlag];
 }

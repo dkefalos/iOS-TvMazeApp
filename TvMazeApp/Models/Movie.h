@@ -13,9 +13,10 @@
 
 //Initializer
 - (instancetype)initMovieWithTitle:(NSString *)showTitle
-                          summary:(NSString *)showSummary
-                           rating:(NSString *)showRating
-                         imageURL:(NSString *)showImageURL;
+                           summary:(NSString *)showSummary
+                            rating:(NSString *)showRating
+                          imageURL:(NSString *)showImageURL
+                       bigImageURL:(NSString *)showBigImageURL;
 
 - (void)getMovieSummary;
 

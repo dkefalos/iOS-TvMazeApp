@@ -15,6 +15,7 @@
                           summary:(NSString*)showSummary
                            rating:(NSString*)showRating
                          imageURL:(NSString *)showImageURL
+                      bigImageURL:(NSString *)showBigImageURL
 {
     self = [super init];
     if (self){
@@ -22,6 +23,7 @@
         self.summary = showSummary;
         self.rating = showRating;
         self.imageURL = showImageURL;
+        self.bigImageURL = showBigImageURL;
     }
     return self;
 }

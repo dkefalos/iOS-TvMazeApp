@@ -14,7 +14,8 @@
 - (instancetype)initSeriesWithTitle:(NSString *)showTitle
                             summary:(NSString *)showSummary
                              rating:(NSString *)showRating
-                           imageURL:(NSString *)showImageURL;
+                           imageURL:(NSString *)showImageURL
+                        bigImageURL:(NSString *)showBigImageURL;
 
 - (void)getEpisodeSummary;
 

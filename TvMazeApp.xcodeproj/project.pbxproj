@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42054FA82085F032007B2285 /* Font Awesome 5 Free-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 42054FA72085F032007B2285 /* Font Awesome 5 Free-Regular-400.otf */; };
-		42054FAA2085F6FE007B2285 /* fa-regular-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42054FA92085F6FE007B2285 /* fa-regular-400.ttf */; };
 		42054FAD208615B2007B2285 /* NSArray+RandomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 42054FAC208615B2007B2285 /* NSArray+RandomObject.m */; };
 		42054FB020862C97007B2285 /* Show+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42054FAF20862C97007B2285 /* Show+Additions.m */; };
+		426E1DF22088E8CC002D68EA /* ImageFullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */; };
 		4277767E2080B90C0098EB15 /* StripHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4277767D2080B90C0098EB15 /* StripHTML.m */; };
 		4297076B207F851B00D7E777 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297076A207F851B00D7E777 /* Show.m */; };
 		4297076E207F853300D7E777 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297076D207F853300D7E777 /* Movie.m */; };
@@ -47,13 +46,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		42054FA72085F032007B2285 /* Font Awesome 5 Free-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Free-Regular-400.otf"; sourceTree = "<group>"; };
-		42054FA92085F6FE007B2285 /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
 		42054FAB208615B2007B2285 /* NSArray+RandomObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomObject.h"; sourceTree = "<group>"; };
 		42054FAC208615B2007B2285 /* NSArray+RandomObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObject.m"; sourceTree = "<group>"; };
 		42054FAE20862C97007B2285 /* Show+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Show+Additions.h"; sourceTree = "<group>"; };
 		42054FAF20862C97007B2285 /* Show+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Show+Additions.m"; sourceTree = "<group>"; };
 		426E1DEF20887507002D68EA /* PickShowVCDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVCDelegate.h; sourceTree = "<group>"; };
+		426E1DF02088E8CC002D68EA /* ImageFullScreenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFullScreenVC.h; sourceTree = "<group>"; };
+		426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFullScreenVC.m; sourceTree = "<group>"; };
 		4277767C2080B90C0098EB15 /* StripHTML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripHTML.h; sourceTree = "<group>"; };
 		4277767D2080B90C0098EB15 /* StripHTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripHTML.m; sourceTree = "<group>"; };
 		42970769207F851B00D7E777 /* Show.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
@@ -192,6 +191,8 @@
 			children = (
 				42A43957207E01AE0067EF0C /* SearchVC.h */,
 				42A43958207E01AE0067EF0C /* SearchVC.m */,
+				426E1DF02088E8CC002D68EA /* ImageFullScreenVC.h */,
+				426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */,
 				42A43989207E0C8D0067EF0C /* DetailsViewController.h */,
 				42A4398A207E0C8D0067EF0C /* DetailsViewController.m */,
 				42FEDED720874EF1006ECC21 /* PickShowVC.h */,
@@ -206,8 +207,6 @@
 		42FEDED320871D64006ECC21 /* ExternalSources */ = {
 			isa = PBXGroup;
 			children = (
-				42054FA72085F032007B2285 /* Font Awesome 5 Free-Regular-400.otf */,
-				42054FA92085F6FE007B2285 /* fa-regular-400.ttf */,
 				4277767C2080B90C0098EB15 /* StripHTML.h */,
 				4277767D2080B90C0098EB15 /* StripHTML.m */,
 			);
@@ -318,8 +317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A43961207E01B00067EF0C /* LaunchScreen.storyboard in Resources */,
-				42054FAA2085F6FE007B2285 /* fa-regular-400.ttf in Resources */,
-				42054FA82085F032007B2285 /* Font Awesome 5 Free-Regular-400.otf in Resources */,
 				42A4395E207E01B00067EF0C /* Assets.xcassets in Resources */,
 				42A4395C207E01AE0067EF0C /* Main.storyboard in Resources */,
 			);
@@ -347,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A43959207E01AE0067EF0C /* SearchVC.m in Sources */,
+				426E1DF22088E8CC002D68EA /* ImageFullScreenVC.m in Sources */,
 				42970771207F854C00D7E777 /* TVSeries.m in Sources */,
 				42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */,
 				4297076E207F853300D7E777 /* Movie.m in Sources */,

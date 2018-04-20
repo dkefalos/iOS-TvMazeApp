@@ -38,6 +38,29 @@
         NSLog(@"Cannot display symmary type");
     }
     
+    // Add a tap recognizer to the view, so that we can see
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickImage)];
+    self.detailsImageView.userInteractionEnabled = YES;
+    //tap.cancelsTouchesInView = NO;
+    [self.detailsImageView addGestureRecognizer:tap];
+}
+
+- (void) didClickImage
+{
+    // Instantiate the ImageFullScreenVC
+    ImageFullScreenVC * imageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"imageFullScreenVC"];
+    
+    // Pass the needed data to the ImageFullScreenVC
+    imageVC.imageURL = self.showToBeDisplayed.bigImageURL;
+    imageVC.delegate = self;
+    
+    [self.navigationController presentViewController:imageVC animated:YES completion:NULL];
+}
+
+
+- (void) ImageFullScreenClicked
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)didReceiveMemoryWarning {

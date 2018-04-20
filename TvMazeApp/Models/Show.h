@@ -14,10 +14,12 @@
 @property (strong, nonatomic) NSString* summary;
 @property (strong, nonatomic) NSString* rating;
 @property (strong, nonatomic) NSString* imageURL;
+@property (strong, nonatomic) NSString* bigImageURL;
 
 - (instancetype)initShowWithTitle:(NSString*)showTitle
                           summary:(NSString*)showSummary
                            rating:(NSString*)showRating
-                         imageURL:(NSString*)showImageURL;
+                         imageURL:(NSString*)showImageURL
+                      bigImageURL:(NSString*)showBigImageURL;
 
 @end

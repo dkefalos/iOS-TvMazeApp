@@ -15,11 +15,13 @@
                            summary:(NSString *)showSummary
                             rating:(NSString *)showRating
                           imageURL:(NSString *)showImageURL
+                       bigImageURL:(NSString *)showBigImageURL
 {
     self = [super initShowWithTitle:showTitle
                             summary:showSummary
                              rating:showRating
-                           imageURL:showImageURL];
+                           imageURL:showImageURL
+                        bigImageURL:showBigImageURL];
 
     return self;
 }
