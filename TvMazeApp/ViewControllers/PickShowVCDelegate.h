@@ -12,7 +12,7 @@
 @protocol PickShowVCDelegate <NSObject>
 
 - (void)didPickShowType:(int)ShowTypeFlag;
-- (void)PickShowTypeVC:(PickShowVC*)pickShowTypeVC
-       didPickShowType:(int)ShowTypeFlag;
+- (void)pickShowTypeVC:(PickShowVC*)pickShowTypeVC
+       DidPickShowType:(int)ShowTypeFlag;
 
 @end

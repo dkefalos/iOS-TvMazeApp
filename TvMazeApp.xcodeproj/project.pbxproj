@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42054FAD208615B2007B2285 /* NSArray+RandomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 42054FAC208615B2007B2285 /* NSArray+RandomObject.m */; };
 		42054FB020862C97007B2285 /* Show+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42054FAF20862C97007B2285 /* Show+Additions.m */; };
 		426E1DF22088E8CC002D68EA /* ImageFullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */; };
+		426E1DF9208A3309002D68EA /* NSString+URLFriendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 426E1DF8208A3309002D68EA /* NSString+URLFriendly.m */; };
+		426E1DFB208A3358002D68EA /* NSArray+RandomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 426E1DFA208A3358002D68EA /* NSArray+RandomObject.m */; };
 		4277767E2080B90C0098EB15 /* StripHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4277767D2080B90C0098EB15 /* StripHTML.m */; };
 		4297076B207F851B00D7E777 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297076A207F851B00D7E777 /* Show.m */; };
 		4297076E207F853300D7E777 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 4297076D207F853300D7E777 /* Movie.m */; };
@@ -24,7 +25,7 @@
 		42A43979207E01B00067EF0C /* TvMazeAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43978207E01B00067EF0C /* TvMazeAppUITests.m */; };
 		42A43988207E02FA0067EF0C /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43987207E02FA0067EF0C /* TableViewCell.m */; };
 		42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A4398A207E0C8D0067EF0C /* DetailsViewController.m */; };
-		42FEDED620873219006ECC21 /* NSString+URLFriendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FEDED520873219006ECC21 /* NSString+URLFriendly.m */; };
+		42F96166208DBACB0007337B /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F96165208DBACB0007337B /* Alerts.m */; };
 		42FEDED920874EF1006ECC21 /* PickShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FEDED820874EF1006ECC21 /* PickShowVC.m */; };
 /* End PBXBuildFile section */
 
@@ -47,13 +48,15 @@
 
 /* Begin PBXFileReference section */
 		42054FAB208615B2007B2285 /* NSArray+RandomObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomObject.h"; sourceTree = "<group>"; };
-		42054FAC208615B2007B2285 /* NSArray+RandomObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObject.m"; sourceTree = "<group>"; };
 		42054FAE20862C97007B2285 /* Show+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Show+Additions.h"; sourceTree = "<group>"; };
 		42054FAF20862C97007B2285 /* Show+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Show+Additions.m"; sourceTree = "<group>"; };
 		426E1DEF20887507002D68EA /* PickShowVCDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVCDelegate.h; sourceTree = "<group>"; };
 		426E1DF02088E8CC002D68EA /* ImageFullScreenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFullScreenVC.h; sourceTree = "<group>"; };
 		426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFullScreenVC.m; sourceTree = "<group>"; };
 		426E1DF32089DE37002D68EA /* ImageFullScreenDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFullScreenDelegate.h; sourceTree = "<group>"; };
+		426E1DF7208A3309002D68EA /* NSString+URLFriendly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLFriendly.h"; sourceTree = "<group>"; };
+		426E1DF8208A3309002D68EA /* NSString+URLFriendly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLFriendly.m"; sourceTree = "<group>"; };
+		426E1DFA208A3358002D68EA /* NSArray+RandomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObject.m"; sourceTree = "<group>"; };
 		4277767C2080B90C0098EB15 /* StripHTML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripHTML.h; sourceTree = "<group>"; };
 		4277767D2080B90C0098EB15 /* StripHTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripHTML.m; sourceTree = "<group>"; };
 		42970769207F851B00D7E777 /* Show.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
@@ -82,8 +85,8 @@
 		42A43987207E02FA0067EF0C /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		42A43989207E0C8D0067EF0C /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		42A4398A207E0C8D0067EF0C /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
-		42FEDED420873219006ECC21 /* NSString+URLFriendly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+URLFriendly.h"; sourceTree = "<group>"; };
-		42FEDED520873219006ECC21 /* NSString+URLFriendly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLFriendly.m"; sourceTree = "<group>"; };
+		42F96164208DBACB0007337B /* Alerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alerts.h; sourceTree = "<group>"; };
+		42F96165208DBACB0007337B /* Alerts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alerts.m; sourceTree = "<group>"; };
 		42FEDED720874EF1006ECC21 /* PickShowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVC.h; sourceTree = "<group>"; };
 		42FEDED820874EF1006ECC21 /* PickShowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickShowVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,13 +139,13 @@
 		42A43953207E01AE0067EF0C /* TvMazeApp */ = {
 			isa = PBXGroup;
 			children = (
-				42FEDED420873219006ECC21 /* NSString+URLFriendly.h */,
-				42FEDED520873219006ECC21 /* NSString+URLFriendly.m */,
 				42A43954207E01AE0067EF0C /* AppDelegate.h */,
 				42A43955207E01AE0067EF0C /* AppDelegate.m */,
+				426E1DF7208A3309002D68EA /* NSString+URLFriendly.h */,
+				426E1DF8208A3309002D68EA /* NSString+URLFriendly.m */,
 				42054FAB208615B2007B2285 /* NSArray+RandomObject.h */,
-				42054FAC208615B2007B2285 /* NSArray+RandomObject.m */,
-				42FEDED320871D64006ECC21 /* ExternalSources */,
+				426E1DFA208A3358002D68EA /* NSArray+RandomObject.m */,
+				42FEDED320871D64006ECC21 /* Helpers */,
 				42FEDED220871D0E006ECC21 /* ViewControllers */,
 				42FEDED120871CC1006ECC21 /* Models */,
 				42A4395D207E01B00067EF0C /* Assets.xcassets */,
@@ -206,13 +209,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		42FEDED320871D64006ECC21 /* ExternalSources */ = {
+		42FEDED320871D64006ECC21 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				42F96164208DBACB0007337B /* Alerts.h */,
+				42F96165208DBACB0007337B /* Alerts.m */,
 				4277767C2080B90C0098EB15 /* StripHTML.h */,
 				4277767D2080B90C0098EB15 /* StripHTML.m */,
 			);
-			path = ExternalSources;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,8 +282,9 @@
 		42A43949207E01AE0067EF0C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AFSE;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = dk;
+				ORGANIZATIONNAME = Afse;
 				TargetAttributes = {
 					42A43950207E01AE0067EF0C = {
 						CreatedOnToolsVersion = 9.3;
@@ -345,18 +351,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				426E1DFB208A3358002D68EA /* NSArray+RandomObject.m in Sources */,
 				42A43959207E01AE0067EF0C /* SearchVC.m in Sources */,
 				426E1DF22088E8CC002D68EA /* ImageFullScreenVC.m in Sources */,
 				42970771207F854C00D7E777 /* TVSeries.m in Sources */,
 				42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */,
+				426E1DF9208A3309002D68EA /* NSString+URLFriendly.m in Sources */,
 				4297076E207F853300D7E777 /* Movie.m in Sources */,
-				42054FAD208615B2007B2285 /* NSArray+RandomObject.m in Sources */,
 				42A43988207E02FA0067EF0C /* TableViewCell.m in Sources */,
 				42054FB020862C97007B2285 /* Show+Additions.m in Sources */,
 				4277767E2080B90C0098EB15 /* StripHTML.m in Sources */,
 				42FEDED920874EF1006ECC21 /* PickShowVC.m in Sources */,
-				42FEDED620873219006ECC21 /* NSString+URLFriendly.m in Sources */,
 				42A43964207E01B00067EF0C /* main.m in Sources */,
+				42F96166208DBACB0007337B /* Alerts.m in Sources */,
 				4297076B207F851B00D7E777 /* Show.m in Sources */,
 				42A43956207E01AE0067EF0C /* AppDelegate.m in Sources */,
 			);
@@ -527,7 +534,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TvMazeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -535,6 +543,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dk.TvMazeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -543,7 +552,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TvMazeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -551,6 +561,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dk.TvMazeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

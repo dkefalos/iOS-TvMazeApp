@@ -13,6 +13,7 @@
 #import "Movie.h"
 #import "TVSeries.h"
 #import "PickShowVCDelegate.h"
+#import "Alerts.h"
 
 @interface SearchVC : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchBarDelegate, PickShowVCDelegate>
 
@@ -21,5 +22,6 @@
 @property (strong, nonatomic) NSMutableArray <Show *> * showsData;
 
 - (void)getShowData;
+- (void)emptySearchBar;
 @end
 

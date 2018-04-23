@@ -8,14 +8,16 @@
 
 #import "SearchVC.h"
 #import "NSArray+RandomObject.h"
-#import "../NSString+URLFriendly.m"
+#import "NSString+URLFriendly.h"
 #import "PickShowVC.h"
 
 @interface SearchVC ()
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property NSDictionary * dataDict;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loader;
+
+- (void)showAlertForNoResults;
+- (void)populateShowDataWithJsonObject:(NSArray*)jsonObject;
 
 @end
 
@@ -49,6 +51,70 @@
     [self.searchBar resignFirstResponder];
 }
 
+#pragma mark - Data Parsing Methods
+
+- (void)showAlertForNoResults
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loader stopAnimating];
+
+        [Alerts generateAlertWithTitle:@"No Results"
+                       andAlertMessage:@"Sorry! We could not find your movie!"
+                        andButtonTitle:@"OK"
+                      inViewController:self];
+    });
+}
+
+- (void)populateShowDataWithJsonObject:(NSArray*)jsonObject
+{
+    int i=0;
+    NSString* currentSummary;
+    NSString* currentRating;
+    NSString* currentImageURL;
+    NSString* currentBigImageURL;
+
+    // Parsing the response and putting in an object we need
+    for (NSDictionary* iterationObj in jsonObject) {
+        // Checking for Nullity and using the checked variables
+        currentSummary = ([iterationObj[@"summary"] isEqual:[NSNull null]] ? @"No Summary" : iterationObj[@"summary"]);
+        if ([iterationObj[@"rating"] isEqual:[NSNull null]]){
+            currentRating = @"No Rating avalable at all";
+        } else {
+            currentRating = ([iterationObj[@"rating"][@"average"] isEqual:[NSNull null]] ? @"No Rating avalable" : [NSString stringWithFormat:@"%.1lf/10", [iterationObj[@"rating"][@"average"] floatValue]]);
+        }
+        if ([iterationObj[@"image"] isEqual:[NSNull null]]){
+            currentImageURL = @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
+            currentBigImageURL = @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
+        } else {
+            currentImageURL = ([iterationObj[@"image"][@"medium"] isEqual:[NSNull null]] ? @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png" : iterationObj[@"image"][@"medium"]);
+            currentBigImageURL = ([iterationObj[@"image"][@"original"] isEqual:[NSNull null]] ? @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png" : iterationObj[@"image"][@"original"]);
+        }
+        
+        // Allocating and initializing the object
+        if (i%2==0){
+            Show * curShow = [[Movie alloc] initMovieWithTitle:iterationObj[@"name"]
+                                                       summary:currentSummary
+                                                        rating:currentRating
+                                                      imageURL:currentImageURL
+                                                   bigImageURL:currentBigImageURL];
+            // Adding it to the list of objects
+            [self.showsData addObject:curShow];
+        } else {
+            Show * curShow = [[TVSeries alloc] initSeriesWithTitle:iterationObj[@"name"]
+                                                           summary:currentSummary
+                                                            rating:currentRating
+                                                          imageURL:currentImageURL
+                                                       bigImageURL:currentBigImageURL];
+            // Adding it to the list of objects
+            [self.showsData addObject:curShow];
+        }
+        i++;
+    }
+}
+
+/**
+ This Function gets the data for the shows from a URL, in a different thread
+ */
 - (void)getShowData
 {
     NSString * searchString = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
@@ -69,64 +135,15 @@
 
         // Check if we have any data from the response
         if (json.count == 0){ // If we got no results
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No Results"
-                                                                               message:@"Sorry! We could not find your movie!"
-                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                      handler:^(UIAlertAction * action) {}];
-                
-                [alert addAction:defaultAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            });
-        } else { // If we got results
+            [self showAlertForNoResults];
+        }
+        else
+        {
+            // If we got results
             // Initializing
+            [self.showsData removeAllObjects];
             self.showsData = [[NSMutableArray alloc] init];
-            int i=0;
-            NSString* currentSummary;
-            NSString* currentRating;
-            NSString* currentImageURL;
-            NSString* currentBigImageURL;
-            
-            // Parsing the response and putting in an object we need
-            for (NSDictionary* iterationObj in jsonObject) {
-                // Checking for Nullity and using the checked variables
-                currentSummary = ([iterationObj[@"summary"] isEqual:[NSNull null]] ? @"No Summary" : iterationObj[@"summary"]);
-                if ([iterationObj[@"rating"] isEqual:[NSNull null]]){
-                    currentRating = @"No Rating avalable at all";
-                } else {
-                    currentRating = ([iterationObj[@"rating"][@"average"] isEqual:[NSNull null]] ? @"No Rating avalable" : [NSString stringWithFormat:@"%.1lf/10", [iterationObj[@"rating"][@"average"] floatValue]]);
-                }
-                if ([iterationObj[@"image"] isEqual:[NSNull null]]){
-                    currentImageURL = @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
-                    currentBigImageURL = @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
-                } else {
-                    currentImageURL = ([iterationObj[@"image"][@"medium"] isEqual:[NSNull null]] ? @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png" : iterationObj[@"image"][@"medium"]);
-                    currentBigImageURL = ([iterationObj[@"image"][@"original"] isEqual:[NSNull null]] ? @"http://static.tvmaze.com/images/no-img/no-img-portrait-text.png" : iterationObj[@"image"][@"original"]);
-                }
-                
-                // Allocating and initializing the object
-                if (i%2==0){
-                    Show * curShow = [[Movie alloc] initMovieWithTitle:iterationObj[@"name"]
-                                                               summary:currentSummary
-                                                                rating:currentRating
-                                                              imageURL:currentImageURL
-                                                           bigImageURL:currentBigImageURL];
-                    // Adding it to the list of objects
-                    [self.showsData addObject:curShow];
-                } else {
-                    Show * curShow = [[TVSeries alloc] initSeriesWithTitle:iterationObj[@"name"]
-                                                                   summary:currentSummary
-                                                                    rating:currentRating
-                                                                  imageURL:currentImageURL
-                                                               bigImageURL:currentBigImageURL];
-                    // Adding it to the list of objects
-                    [self.showsData addObject:curShow];
-                }
-                i++;
-            }
+            [self populateShowDataWithJsonObject:jsonObject];
             
             // Reloading the table view data in the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -199,6 +216,10 @@
     }
 }
 
+- (void)emptySearchBar{
+    self.searchBar.text = @"";
+}
+
 #pragma mark - Pick Show VC Protocol
 - (IBAction)pickShowButtonPressed:(id)sender
 {
@@ -218,51 +239,36 @@
         //Separating the selections
         if(ShowTypeFlag == 0) // TV series
         {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"TV series"
-                                                                           message:@"You are now searching for TV series"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [Alerts generateAlertWithTitle:@"TV series"
+                           andAlertMessage:@"You are now searching for TV series"
+                            andButtonTitle:@"OK"
+                          inViewController:self];
         }
         else if (ShowTypeFlag == 1) // Movies
         {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Movies"
-                                                                           message:@"You are now searching for movies"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [Alerts generateAlertWithTitle:@"Movies"
+                           andAlertMessage:@"You are now searching for movies"
+                            andButtonTitle:@"OK"
+                          inViewController:self];
         }
         else // Unknown
         {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Unknown Selection"
-                                                                           message:@"An Error has occured"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [Alerts generateAlertWithTitle:@"Unknown Selection"
+                           andAlertMessage:@"An Error has occured"
+                            andButtonTitle:@"OK"
+                          inViewController:self];
         }
     }];
 }
 
-- (void)PickShowTypeVC:(PickShowVC*)pickShowTypeVC
-       didPickShowType:(int)ShowTypeFlag
+- (void)pickShowTypeVC:(PickShowVC*)pickShowTypeVC
+       DidPickShowType:(int)ShowTypeFlag
 {
     //We will not need the Pick Show VC for now, so we are using the other protocol method in this one
     [self didPickShowType:ShowTypeFlag];
 }
 
-// Memory warning
+#pragma mark - Memory Management
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
