@@ -11,12 +11,21 @@
 
 @interface Movie : Show
 
+@property (strong, nonatomic) NSString* budget;
+
 //Initializer
-- (instancetype)initMovieWithTitle:(NSString *)showTitle
-                           summary:(NSString *)showSummary
-                            rating:(NSString *)showRating
-                          imageURL:(NSString *)showImageURL
-                       bigImageURL:(NSString *)showBigImageURL;
+- (instancetype)initMovieWithId:(NSString *)showId
+                       andTitle:(NSString *)showTitle
+                        andType:(NSString *)showType
+                     andSummary:(NSString *)showSummary
+                      andRating:(NSString *)showRating
+                    andImageURL:(NSString *)showImageURL
+                 andBigImageURL:(NSString *)showBigImageURL;
+
+- (void)addMovieToShowList:(NSMutableArray*)showsData
+       withIterationObject:(NSDictionary*)iterationObj;
+
+- (void)addDetailsToMovieWithBudget:(NSString*) showBudget;
 
 - (void)getMovieSummary;
 

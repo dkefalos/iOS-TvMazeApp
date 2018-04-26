@@ -11,15 +11,20 @@
 @implementation Show
 
 // Initializer
-- (instancetype)initShowWithTitle:(NSString*)showTitle
-                          summary:(NSString*)showSummary
-                           rating:(NSString*)showRating
-                         imageURL:(NSString *)showImageURL
-                      bigImageURL:(NSString *)showBigImageURL
+- (instancetype)initShowWithId:(NSString*)showId
+                      andTitle:(NSString*)showTitle
+                       andType:(NSString *)showType
+                    andSummary:(NSString*)showSummary
+                     andRating:(NSString*)showRating
+                   andImageURL:(NSString*)showImageURL
+                andBigImageURL:(NSString*)showBigImageURL
 {
+    
     self = [super init];
     if (self){
+        self.id = showId;
         self.title = showTitle;
+        self.showType = showType;
         self.summary = showSummary;
         self.rating = showRating;
         self.imageURL = showImageURL;

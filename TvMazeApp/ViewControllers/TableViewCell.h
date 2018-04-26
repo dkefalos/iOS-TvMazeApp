@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *showTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *showRatingLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *showImageView;
-@property (weak, nonatomic) IBOutlet UILabel *showSummaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *showTypeLabel;
+
+
 
 @end

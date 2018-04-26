@@ -16,5 +16,6 @@
 @interface DetailsViewController : UIViewController <ImageFullScreenDelegate>
 
 @property (strong, nonatomic) Show* showToBeDisplayed;
+@property (strong, nonatomic) NSString* idToBeDisplayed;
 
 @end

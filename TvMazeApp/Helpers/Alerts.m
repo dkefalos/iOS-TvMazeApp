@@ -22,7 +22,6 @@
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {
             if ([viewController respondsToSelector:@selector(emptySearchBar)]){
-                NSLog(@"In selector");
                 [viewController performSelector:@selector(emptySearchBar)];
             }
         }];

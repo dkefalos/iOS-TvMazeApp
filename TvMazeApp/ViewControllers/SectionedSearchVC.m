@@ -1,34 +1,31 @@
 //
-//  ViewController.m
+//  SectionCellVC.m
 //  TvMazeApp
 //
-//  Created by Dimitris Kefalos on 11/04/2018.
-//  Copyright © 2018 dk. All rights reserved.
+//  Created by Dimitris Kefalos on 26/04/2018.
+//  Copyright © 2018 Afse. All rights reserved.
 //
 
-#import "SearchVC.h"
-#import "NSString+URLFriendly.h"
-#import "PickShowVC.h"
+#import "SectionedSearchVC.h"
 
-@interface SearchVC ()
-
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loader;
+@interface SectionedSearchVC ()
+@property (weak, nonatomic) IBOutlet UISearchBar *sectionSearchBar;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sectionLoader;
 
 - (void)showAlertForNoResults;
 - (void)populateShowDataWithJsonObject:(NSArray*)jsonObject;
 
 @end
 
-@implementation SearchVC
+@implementation SectionedSearchVC
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.searchBar setDelegate:self];
+    [self.sectionSearchBar setDelegate:self];
     
     //creation of zero footer so the table doesnt create the empty rows
-    self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.sectionsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     // Add a tap recognizer to the view, so that we can dismiss the keyboard
     UITapGestureRecognizer *tapAnywhere = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -36,12 +33,12 @@
     [self.view addGestureRecognizer:tapAnywhere];
     
     // Hide loader when it is not showed
-    self.loader.hidesWhenStopped = YES;
+    self.sectionLoader.hidesWhenStopped = YES;
 }
 
 - (void)dismissKeyboard
 {
-    [self.searchBar resignFirstResponder];
+    [self.sectionSearchBar resignFirstResponder];
 }
 
 #pragma mark - Data Parsing Methods
@@ -49,8 +46,8 @@
 - (void)showAlertForNoResults
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.loader stopAnimating];
-
+        [self.sectionLoader stopAnimating];
+        
         [Alerts generateAlertWithTitle:@"No Results"
                        andAlertMessage:@"Sorry! We could not find your movie!"
                         andButtonTitle:@"OK"
@@ -69,14 +66,13 @@
         
         if([currentMediaType isEqualToString:@"movie"])
         { // Parsing movies
-            [[Movie alloc] addMovieToShowList:self.showsData
+            [[Movie alloc] addMovieToShowList:self.moviesData
                           withIterationObject:iterationObj];
         }
         else if ([currentMediaType isEqualToString:@"tv"])
         { // Parsing TVSeries
-            [[TVSeries alloc] addTVSeriesToShowList:self.showsData
+            [[TVSeries alloc] addTVSeriesToShowList:self.tvSeriesData
                                 withIterationObject:iterationObj];
-            
         }
     }
 }
@@ -86,7 +82,7 @@
  */
 - (void)getShowData
 {
-    NSString * searchString = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSString * searchString = [self.sectionSearchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     //NSString * searchString = [NSString makeURLFriendlyThisString:self.searchBar.text];
     //NSString * searchString = self.searchBar.text;
     //[searchString makeMeURLFriendly];
@@ -98,11 +94,11 @@
     NSURLSession *session = [NSURLSession sharedSession];
     session.configuration.URLCache = NULL;
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData* data, NSURLResponse* response, NSError* error) {
-
+        
         // Getting JSON response
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSArray * jsonObject = [json valueForKey:@"results"];
-
+        
         // Check if we have any data from the response
         if (json.count == 0){ // If we got no results
             [self showAlertForNoResults];
@@ -111,14 +107,16 @@
         {
             // If we got results
             // Initializing
-            [self.showsData removeAllObjects];
-            self.showsData = [[NSMutableArray alloc] init];
+            [self.moviesData removeAllObjects];
+            [self.tvSeriesData removeAllObjects];
+            self.moviesData = [[NSMutableArray alloc] init];
+            self.tvSeriesData = [[NSMutableArray alloc] init];
             [self populateShowDataWithJsonObject:jsonObject];
             
             // Reloading the table view data in the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.loader stopAnimating];
-                [self.listTableView reloadData];
+                [self.sectionLoader stopAnimating];
+                [self.sectionsTableView reloadData];
             });
         }
     }];
@@ -126,19 +124,40 @@
 }
 
 #pragma mark - Table View Functions
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) // Movies
+    {
+        return @"Movies";
+    }
+    else // if (section == 1) // TVSeries
+    {
+        return @"TV Series";
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return self.showsData.count;
+    if (section == 0){
+        return self.moviesData.count;
+    }
+    else // if (section == 2)
+    {
+        return self.tvSeriesData.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    static NSString *movieCellIdentifier = @"movieCell";
-    static NSString *seriesCellIdentifier = @"seriesCell";
-    
-    if ([self.showsData[indexPath.row].showType isEqualToString:@"Movie"])
+    if (indexPath.section == 0) // Movies
     {
-        // use the cells we have on the xib file for Movie
+        // use the cells we have on the xib file for TVSeries
+        static NSString *movieCellIdentifier = @"movieCell";
         MovieTableViewCell *cell = (MovieTableViewCell *)[tableView dequeueReusableCellWithIdentifier:movieCellIdentifier];
         if (cell == nil) {
             [tableView registerNib:[UINib nibWithNibName:@"MovieTableViewCell" bundle:nil] forCellReuseIdentifier:movieCellIdentifier];
@@ -146,7 +165,7 @@
         }
         
         // Add the data to the UIElements
-        Show* currentMovie = self.showsData[indexPath.row];
+        Show* currentMovie = self.moviesData[indexPath.row];
         cell.movieCellTitleLabel.text = currentMovie.title;
         cell.movieCellRatingLabel.text = [NSString stringWithFormat:@"%@", currentMovie.rating];
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:currentMovie.imageURL]];
@@ -154,9 +173,10 @@
         cell.movieCellImageView.contentMode = UIViewContentModeScaleAspectFit;
         return cell;
     }
-    else
+    else // if (indexPath.section == 1) TVSeries
     {
         // use the cells we have on the xib file for TVSeries
+        static NSString *seriesCellIdentifier = @"seriesCell";
         TVSeriesTableViewCell *cell = (TVSeriesTableViewCell *)[tableView dequeueReusableCellWithIdentifier:seriesCellIdentifier];
         if (cell == nil) {
             [tableView registerNib:[UINib nibWithNibName:@"TVSeriesTableViewCell" bundle:nil] forCellReuseIdentifier:seriesCellIdentifier];
@@ -164,7 +184,7 @@
         }
         
         // Add the data to the UIElements
-        Show* currentTVSeries = self.showsData[indexPath.row];
+        Show* currentTVSeries = self.tvSeriesData[indexPath.row];
         cell.seriesCellTitleLabel.text = currentTVSeries.title;
         cell.seriesCellRatingLabel.text = currentTVSeries.rating;
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:currentTVSeries.imageURL]];
@@ -185,11 +205,20 @@
 {
     // Initialize a new ViewController
     DetailsViewController *detailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsViewController"];
-
+    
     // Pass the parameter to the new controller
-    detailsVC.showToBeDisplayed = self.showsData[indexPath.row];
-    detailsVC.idToBeDisplayed = self.showsData[indexPath.row].id;
-
+    if (indexPath.section == 0) // Movies
+    {
+        detailsVC.showToBeDisplayed = self.moviesData[indexPath.row];
+        detailsVC.idToBeDisplayed = self.moviesData[indexPath.row].id;
+        
+    }
+    else // if(indexPath.section == 1) // TV Series
+    {
+        detailsVC.showToBeDisplayed = self.tvSeriesData[indexPath.row];
+        detailsVC.idToBeDisplayed = self.tvSeriesData[indexPath.row].id;
+    }
+    
     // Start the new ViewController
     [self.navigationController pushViewController:detailsVC animated:YES];
 }
@@ -198,13 +227,13 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if ([searchBar.text length] != 0){
-        [self.loader startAnimating];
+        [self.sectionLoader startAnimating];
         [self getShowData];
     }
 }
 
 - (void)emptySearchBar{
-    self.searchBar.text = @"";
+    self.sectionSearchBar.text = @"";
 }
 
 #pragma mark - Pick Show VC Protocol
@@ -222,7 +251,7 @@
 {
     // Dismissing the pick VC to have the alerts
     [self dismissViewControllerAnimated:YES completion:^{
-    
+        
         //Separating the selections
         if(ShowTypeFlag == 0) // TV series
         {

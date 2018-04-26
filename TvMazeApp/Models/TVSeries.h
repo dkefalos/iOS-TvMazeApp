@@ -11,11 +11,21 @@
 
 @interface TVSeries : Show
 
-- (instancetype)initSeriesWithTitle:(NSString *)showTitle
-                            summary:(NSString *)showSummary
-                             rating:(NSString *)showRating
-                           imageURL:(NSString *)showImageURL
-                        bigImageURL:(NSString *)showBigImageURL;
+@property (strong, nonatomic) NSString* NoEpisodes;
+
+- (instancetype)initSeriesWithId:(NSString*)showId
+                        andTitle:(NSString*)showTitle
+                         andType:(NSString*)showType
+                      andSummary:(NSString*)showSummary
+                       andRating:(NSString*)showRating
+                     andImageURL:(NSString*)showImageURL
+                  andBigImageURL:(NSString*)showBigImageURL;
+
+- (void)addTVSeriesToShowList:(NSMutableArray*)showsData
+       withIterationObject:(NSDictionary*)iterationObj;
+
+- (void)addDetailsToTVSeriesWithNoEpisodes:(NSString*) NoEpisodes;
+
 
 - (void)getEpisodeSummary;
 

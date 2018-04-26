@@ -14,6 +14,8 @@
 #import "TVSeries.h"
 #import "PickShowVCDelegate.h"
 #import "Alerts.h"
+#import "MovieTableViewCell.h"
+#import "TVSeriesTableViewCell.h"
 
 @interface SearchVC : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchBarDelegate, PickShowVCDelegate>
 
