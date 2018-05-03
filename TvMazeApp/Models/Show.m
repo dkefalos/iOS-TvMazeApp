@@ -18,6 +18,7 @@
                      andRating:(NSString *)showRating
                    andImageURL:(NSString *)showImageURL
                 andBigImageURL:(NSString *)showBigImageURL
+                   andImdbLink:(NSString *)showImdbLink
 {
     
     self = [super init];

@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailsTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moreDetailsLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *detailsLoader;
+@property (weak, nonatomic) IBOutlet UIButton *imdbLinkButton;
+@property (weak, nonatomic) IBOutlet UIButton *trailerButton;
 
 
 - (void)setMovieExtraDetailsFromId:(NSString*)currentShowId;
@@ -45,6 +47,11 @@
     NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.showToBeDisplayed.imageURL]];
     self.detailsImageView.image = [UIImage imageWithData: data];
     self.detailsImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    if ([self.showToBeDisplayed.showType isEqual:@"TvSeries"]){
+        self.imdbLinkButton.hidden = YES;
+        self.trailerButton.hidden = YES;
+    }
 
     // Add a tap recognizer to the view, so that we can see
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickImage)];
@@ -130,6 +137,15 @@
         }
     }];
     [dataTask resume];
+}
+
+- (IBAction)imdbLinkButtonPressed:(UIButton *)sender
+{
+    ImdbViewController* imdbViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"imdbVC"];
+    
+    imdbViewController.imdbLinkToBeDisplayed = self.showToBeDisplayed.imdbLink;
+    
+    [self.navigationController presentViewController:imdbViewController animated:YES completion:NULL];
 }
 
 - (void) didClickImage

@@ -18,6 +18,7 @@
                       andRating:(NSString *)showRating
                     andImageURL:(NSString *)showImageURL
                  andBigImageURL:(NSString *)showBigImageURL
+                    andImdbLink:(NSString *)showImdbLink
 {
     self = [super initShowWithId:showId
                         andTitle:showTitle
@@ -25,7 +26,8 @@
                       andSummary:showSummary
                        andRating:showRating
                      andImageURL:showImageURL
-                  andBigImageURL:showImageURL];
+                  andBigImageURL:showImageURL
+                     andImdbLink:showImdbLink];
 
     return self;
 }
@@ -39,6 +41,7 @@
     NSString *currentRating;
     NSString *currentImageURL;
     NSString *currentBigImageURL;
+    NSString *currentImdbLink;
     
     currentId = iterationObj[@"id"];
     currentSummary = ([iterationObj[@"overview"] isEqual:[NSNull null]] ? @"No Summary" : iterationObj[@"overview"]);
@@ -56,6 +59,7 @@
     
     // Parsing movies
     currentTitle = ([iterationObj[@"original_title"] isEqual:[NSNull null]] ? @"No Title" : iterationObj[@"original_title"]);
+    currentImdbLink = iterationObj[@"imdb_id"]; // even if it is null
     
     Show * curShow = [[Movie alloc] initMovieWithId:currentId
                                            andTitle:currentTitle
@@ -63,7 +67,8 @@
                                          andSummary:currentSummary
                                           andRating:currentRating
                                         andImageURL:currentImageURL
-                                     andBigImageURL:currentBigImageURL];
+                                     andBigImageURL:currentBigImageURL
+                                        andImdbLink:currentImdbLink];
     
     // Adding it to the list of objects
     [showsData addObject:curShow];

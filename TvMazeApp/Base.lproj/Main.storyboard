@@ -324,6 +324,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j96-HM-Ays">
+                                <rect key="frame" x="233" y="226" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="View trailer"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bj-2P-ejI">
+                                <rect key="frame" x="239" y="170" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="IMDB link"/>
+                                <connections>
+                                    <action selector="imdbLinkButtonPressed:" destination="vLa-Ae-YVq" eventType="touchUpInside" id="RNU-Ru-4nJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="eg6-bO-2Ze"/>
@@ -333,12 +346,43 @@
                         <outlet property="detailsLoader" destination="8Jd-rt-1ra" id="2Wf-zO-eR8"/>
                         <outlet property="detailsSummaryLabel" destination="yCT-mr-uk8" id="rSh-X2-oid"/>
                         <outlet property="detailsTitleLabel" destination="IAw-D3-79S" id="8pY-tc-D4l"/>
+                        <outlet property="imdbLinkButton" destination="0Bj-2P-ejI" id="epx-Lf-TFW"/>
                         <outlet property="moreDetailsLabel" destination="YRF-fc-ga9" id="BHd-R7-flo"/>
+                        <outlet property="trailerButton" destination="j96-HM-Ays" id="oCd-vp-z2A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdI-ER-YsI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3746.4000000000001" y="132.68365817091455"/>
+        </scene>
+        <!--Imdb View Controller-->
+        <scene sceneID="faH-MM-qZ9">
+            <objects>
+                <viewController storyboardIdentifier="imdbVC" id="y0c-dK-oNb" customClass="ImdbViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OUp-wP-3Mc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZG2-35-Jvg">
+                                <rect key="frame" x="67" y="110" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Exj-Lj-nGi"/>
+                    </view>
+                    <connections>
+                        <outlet property="imdbWebKitView" destination="ZG2-35-Jvg" id="d0V-7O-gok"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Zh-kz-KNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4668" y="-229"/>
         </scene>
         <!--Mixed Table-->
         <scene sceneID="e5w-g9-iyD">

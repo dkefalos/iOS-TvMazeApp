@@ -32,6 +32,7 @@
 		42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A4398A207E0C8D0067EF0C /* DetailsViewController.m */; };
 		42A944F52096F37100CB8A42 /* GenreSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A944F42096F37100CB8A42 /* GenreSearchVC.m */; };
 		42A944F82097086100CB8A42 /* ShowGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A944F72097086100CB8A42 /* ShowGroupModel.m */; };
+		42F03CC5209B0A290026749D /* ImdbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F03CC4209B0A290026749D /* ImdbViewController.m */; };
 		42F96166208DBACB0007337B /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F96165208DBACB0007337B /* Alerts.m */; };
 		42FEDED920874EF1006ECC21 /* PickShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FEDED820874EF1006ECC21 /* PickShowVC.m */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,9 @@
 		42A944F42096F37100CB8A42 /* GenreSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenreSearchVC.m; sourceTree = "<group>"; };
 		42A944F62097086100CB8A42 /* ShowGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowGroupModel.h; sourceTree = "<group>"; };
 		42A944F72097086100CB8A42 /* ShowGroupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowGroupModel.m; sourceTree = "<group>"; };
+		42F03CC3209B0A290026749D /* ImdbViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImdbViewController.h; sourceTree = "<group>"; };
+		42F03CC4209B0A290026749D /* ImdbViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImdbViewController.m; sourceTree = "<group>"; };
+		42F03CC6209B15C10026749D /* ImdbViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImdbViewControllerDelegate.h; sourceTree = "<group>"; };
 		42F96164208DBACB0007337B /* Alerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alerts.h; sourceTree = "<group>"; };
 		42F96165208DBACB0007337B /* Alerts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alerts.m; sourceTree = "<group>"; };
 		42FEDED720874EF1006ECC21 /* PickShowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVC.h; sourceTree = "<group>"; };
@@ -228,6 +232,9 @@
 		42FEDED220871D0E006ECC21 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				42F03CC6209B15C10026749D /* ImdbViewControllerDelegate.h */,
+				42F03CC3209B0A290026749D /* ImdbViewController.h */,
+				42F03CC4209B0A290026749D /* ImdbViewController.m */,
 				42A944F32096F37100CB8A42 /* GenreSearchVC.h */,
 				42A944F42096F37100CB8A42 /* GenreSearchVC.m */,
 				420453202091E921001B8E5A /* SectionedSearchVC.h */,
@@ -406,6 +413,7 @@
 				42054FB020862C97007B2285 /* Show+Additions.m in Sources */,
 				4277767E2080B90C0098EB15 /* StripHTML.m in Sources */,
 				42FEDED920874EF1006ECC21 /* PickShowVC.m in Sources */,
+				42F03CC5209B0A290026749D /* ImdbViewController.m in Sources */,
 				42A43964207E01B00067EF0C /* main.m in Sources */,
 				427F3BBE20907FF100412C04 /* TVSeriesTableViewCell.m in Sources */,
 				42F96166208DBACB0007337B /* Alerts.m in Sources */,

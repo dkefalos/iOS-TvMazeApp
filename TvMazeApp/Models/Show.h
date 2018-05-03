@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *rating;
 @property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) NSString *bigImageURL;
+@property (strong, nonatomic) NSString *imdbLink;
 
 // Initializer
 - (instancetype)initShowWithId:(NSString *)showId
@@ -25,6 +26,7 @@
                     andSummary:(NSString *)showSummary
                      andRating:(NSString *)showRating
                    andImageURL:(NSString *)showImageURL
-                andBigImageURL:(NSString *)showBigImageURL;
+                andBigImageURL:(NSString *)showBigImageURL
+                   andImdbLink:(NSString *)showImdbLink;
 
 @end

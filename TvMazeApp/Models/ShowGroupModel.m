@@ -47,23 +47,26 @@
 
 - (void)addShowToShowListFromJsonDictionary:(NSDictionary *)iterationObject
 {
-    NSString* currentId;
-    NSString* currentTitle;
-    NSString* currentMediaType;
-    NSString* currentSummary;
-    NSString* currentRating;
-    NSString* currentImageURL;
-    NSString* currentBigImageURL;
+    NSString *currentId;
+    NSString *currentTitle;
+    NSString *currentMediaType;
+    NSString *currentSummary;
+    NSString *currentRating;
+    NSString *currentImageURL;
+    NSString *currentBigImageURL;
+    NSString *currentImdbLink;
     
     currentId = iterationObject[@"id"];
     if ([iterationObject[@"media_type"] isEqualToString:@"movie"])
     { // Parsing movies
         currentTitle = ([iterationObject[@"original_title"] isEqual:NULL] ? @"No Title" : iterationObject[@"original_title"]);
+        currentImdbLink = iterationObject[@"imdb_id"];
         currentMediaType = @"Movie";
     }
     else
     { // Parsing TV Series
         currentTitle = ([iterationObject[@"original_name"] isEqual:NULL] ? @"No Title" : iterationObject[@"original_name"]);
+        currentImdbLink = nil;
         currentMediaType = @"TvSeries";
     }
     currentSummary = ([iterationObject[@"overview"] isEqual:[NSNull null]] ? @"No Summary" : iterationObject[@"overview"]);
@@ -79,13 +82,15 @@
         currentBigImageURL = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w1280/%@", iterationObject[@"poster_path"]];
     }
     
+    
     Show * curShow = [[Show alloc] initShowWithId:currentId
                                          andTitle:currentTitle
                                           andType:currentMediaType
                                        andSummary:currentSummary
                                         andRating:currentRating
                                       andImageURL:currentImageURL
-                                   andBigImageURL:currentBigImageURL];
+                                   andBigImageURL:currentBigImageURL
+                                      andImdbLink:currentImdbLink];
     
     // Adding it to the list of objects
     [self.showList addObject:curShow];

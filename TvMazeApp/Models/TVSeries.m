@@ -26,7 +26,8 @@
                       andSummary:showSummary
                        andRating:showRating
                      andImageURL:showImageURL
-                  andBigImageURL:showBigImageURL];
+                  andBigImageURL:showBigImageURL
+                     andImdbLink:nil];
     
     return self;
 }

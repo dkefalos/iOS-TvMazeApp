@@ -12,6 +12,7 @@
 #import "TVSeries.h"
 #import "StripHTML.h"
 #import "ImageFullScreenVC.h"
+#import "ImdbViewController.h"
 
 @interface DetailsViewController : UIViewController <ImageFullScreenDelegate>
 
