@@ -1,31 +1,39 @@
 //
-//  SectionCellVC.m
+//  ArraySearchVC.m
 //  TvMazeApp
 //
-//  Created by Dimitris Kefalos on 26/04/2018.
+//  Created by Dimitris Kefalos on 30/04/2018.
 //  Copyright © 2018 Afse. All rights reserved.
 //
 
-#import "SectionedSearchVC.h"
+#import "GenreSearchVC.h"
 
-@interface SectionedSearchVC ()
-@property (weak, nonatomic) IBOutlet UISearchBar *sectionSearchBar;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *sectionLoader;
+@interface GenreSearchVC ()
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLoader;
+
+@property (strong, nonatomic) NSMutableArray <Genre*> *genreArray;
+@property (strong, nonatomic) NSMutableArray <ShowGroupModel*> *showGroups;
 
 - (void)showAlertForNoResults;
-- (void)populateShowDataWithJsonObject:(NSArray*)jsonObject;
+- (void)populateShowsListWithJsonObject:(NSArray *)jsonObject;
+- (void)populateGenreNames;
 
 @end
 
-@implementation SectionedSearchVC
+@implementation GenreSearchVC
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.sectionSearchBar setDelegate:self];
+    [self.searchBar setDelegate:self];
     
+    // Get the genre list. By the time the user makes a search, this should have returned the list
+    self.genreArray = [Genre setGenreList:self.genreArray];
     //creation of zero footer so the table doesnt create the empty rows
-    self.sectionsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.listTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     // Add a tap recognizer to the view, so that we can dismiss the keyboard
     UITapGestureRecognizer *tapAnywhere = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -33,20 +41,15 @@
     [self.view addGestureRecognizer:tapAnywhere];
     
     // Hide loader when it is not showed
-    self.sectionLoader.hidesWhenStopped = YES;
+    self.activityLoader.hidesWhenStopped = YES;
 }
 
-- (void)dismissKeyboard
-{
-    [self.sectionSearchBar resignFirstResponder];
-}
-
-#pragma mark - Data Parsing Methods
+#pragma mark - Show Data Parsing Methods
 
 - (void)showAlertForNoResults
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.sectionLoader stopAnimating];
+        [self.activityLoader stopAnimating];
         
         [Alerts generateAlertWithTitle:@"No Results"
                        andAlertMessage:@"Sorry! We could not find your movie!"
@@ -55,27 +58,76 @@
     });
 }
 
-- (void)populateShowDataWithJsonObject:(NSArray*)jsonObject
+/**
+ Populates the names of the used genre IDs, in the show group array
+ */
+- (void)populateGenreNames
 {
-    NSString* currentMediaType;
-    
-    // Parsing the response and putting in an object we need
-    for (NSDictionary* iterationObj in jsonObject)
+    BOOL genreFoundFlag = NO;
+    for (ShowGroupModel *iterationShowGroup in self.showGroups)
     {
-        // Parsing data that are identical for Movies and TVSeries
-        currentMediaType = iterationObj[@"media_type"];
-        
-        if([currentMediaType isEqualToString:@"movie"])
-        { // Parsing movies
-            [[Movie alloc] addMovieToShowList:self.moviesData
-                          withIterationObject:iterationObj];
+        for(Genre* iterationGenre in self.genreArray)
+        {
+            if ([iterationShowGroup.genreId isEqual:iterationGenre.genreId])
+            {
+                iterationShowGroup.genreName = iterationGenre.genreName;
+                genreFoundFlag = YES;
+                break;
+            }
         }
-        else if ([currentMediaType isEqualToString:@"tv"])
-        { // Parsing TVSeries
-            [[TVSeries alloc] addTVSeriesToShowList:self.tvSeriesData
-                                withIterationObject:iterationObj];
+        if (genreFoundFlag == NO)
+        {
+            iterationShowGroup.genreName = @"Other";
         }
     }
+}
+
+/**
+ Fills the show group array, with the show data
+
+ @param jsonObject the object that we got from JSON
+ */
+- (void)populateShowsListWithJsonObject:(NSArray*)jsonObject
+{
+    self.showGroups = [[NSMutableArray alloc] init];
+    for (NSDictionary* iterationObj in jsonObject)
+    {
+        if (iterationObj[@"genre_ids"] != nil && [iterationObj[@"genre_ids"] count] != 0)
+        {
+            ShowGroupModel* newShowGroup;
+            newShowGroup = [ShowGroupModel indexOfThisGenreId:iterationObj[@"genre_ids"][0] inThisArray:self.showGroups];
+            
+            if (newShowGroup == nil) // Group not Found
+            {
+                newShowGroup = [[ShowGroupModel alloc] initGroupModelWithGenreId:iterationObj[@"genre_ids"][0]];
+                
+                [newShowGroup addShowToShowListFromJsonDictionary:iterationObj];
+                [self.showGroups addObject:newShowGroup];
+            }
+            else // Group Found
+            {
+                [newShowGroup addShowToShowListFromJsonDictionary:iterationObj];
+            }
+        }
+        else
+        {
+            ShowGroupModel* newShowGroup;
+            newShowGroup = [ShowGroupModel indexOfThisGenreId:iterationObj[@"Other"] inThisArray:self.showGroups];
+            
+            if (newShowGroup == nil) // Group not Found
+            {
+                newShowGroup = [[ShowGroupModel alloc] initGroupModelWithGenreId:iterationObj[@"Other"]];
+                
+                [newShowGroup addShowToShowListFromJsonDictionary:iterationObj];
+                [self.showGroups addObject:newShowGroup];
+            }
+            else // Group Found
+            {
+                [newShowGroup addShowToShowListFromJsonDictionary:iterationObj];
+            }
+        }
+    }
+    [self populateGenreNames];
 }
 
 /**
@@ -83,7 +135,7 @@
  */
 - (void)getShowData
 {
-    NSString * searchString = [self.sectionSearchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSString *searchString = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
     NSString *urlString = [NSString stringWithFormat: @"https://api.themoviedb.org/3/search/multi?api_key=6b2e856adafcc7be98bdf0d8b076851c&query=%@", searchString];
     NSURL * searchURL = [NSURL URLWithString:urlString];
@@ -106,20 +158,12 @@
         else
         {
             // If we got results
-            // Initializing
-            [self.moviesData removeAllObjects];
-            [self.tvSeriesData removeAllObjects];
-            self.moviesData = [[NSMutableArray alloc] init];
-            self.tvSeriesData = [[NSMutableArray alloc] init];
-            self.showsArray = [[NSMutableArray alloc] init];
-            [self populateShowDataWithJsonObject:jsonObject];
-            [self.showsArray addObject:self.moviesData];
-            [self.showsArray addObject:self.tvSeriesData];
+            [self populateShowsListWithJsonObject:jsonObject];
             
             // Reloading the table view data in the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.sectionLoader stopAnimating];
-                [self.sectionsTableView reloadData];
+                [self.activityLoader stopAnimating];
+                [self.listTableView reloadData];
             });
         }
     }];
@@ -127,28 +171,40 @@
 }
 
 #pragma mark - Table View Functions
+
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    Show* showToBeMoved = self.showsArray[sourceIndexPath.section][sourceIndexPath.row];
+    // make the move
+    Show* showToBeMoved = self.showGroups[sourceIndexPath.section].showList[sourceIndexPath.row];
+    [self.showGroups[sourceIndexPath.section].showList removeObjectAtIndex:sourceIndexPath.row];
+    [self.showGroups[destinationIndexPath.section].showList insertObject:showToBeMoved atIndex:destinationIndexPath.row];
     
-    [self.showsArray[sourceIndexPath.section] removeObjectAtIndex:sourceIndexPath.row];
-    [self.showsArray[destinationIndexPath.section] insertObject:showToBeMoved atIndex:destinationIndexPath.row];
+    // remove section if there are no shows in it
+    if (self.showGroups[sourceIndexPath.section].showList.count == 0)
+    {
+        [self.showGroups removeObjectAtIndex:sourceIndexPath.section];
+    }
     
-    [self.sectionsTableView reloadData];
+    // Show alert if we move between sections
+    [Alerts generateAlertWithTitle:@"Warning"
+                   andAlertMessage:@"You are moving a show in a different genre"
+                    andButtonTitle:@"OK"
+                  inViewController:self];
+    
+    [self.listTableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     editingStyle = UITableViewCellEditingStyleDelete;
     
-    if(indexPath.section == 0 && self.moviesData.count != 0) // Movie
+    // Delete show from show array
+    [self.showGroups[indexPath.section].showList removeObjectAtIndex:indexPath.row];
+    if(self.showGroups[indexPath.section].showList.count == 0)
     {
-        [self.moviesData removeObjectAtIndex:indexPath.row];
+        [self.showGroups removeObjectAtIndex:indexPath.section];
     }
-    else //if(indexPath.section == 1) // TV Series
-    {
-        [self.tvSeriesData removeObjectAtIndex:indexPath.row];
-    }
+
     [tableView reloadData];
 }
 
@@ -159,48 +215,22 @@
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0 && self.moviesData.count != 0) // Movies
-    {
-        return @"Movies";
-    }
-    else // if (section == 1) // TVSeries
-    {
-        return @"TV Series";
-    }
+    return self.showGroups[section].genreName;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.moviesData.count + self.tvSeriesData.count == 0)
-    {
-        return 0;
-    }
-    else if (self.moviesData.count == 0 || self.tvSeriesData.count == 0)
-    {
-        return 1;
-    }
-    else
-    {
-        return 2;
-    }
+    return self.showGroups.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    if (section == 0 && self.moviesData.count != 0)
-    {
-        return self.moviesData.count;
-    }
-    else // if (section == 2)
-    {
-        return self.tvSeriesData.count;
-    }
+    return self.showGroups[section].showList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    Show* currentShow = self.showsArray[indexPath.section][indexPath.row];
-    if ([currentShow.showType isEqualToString:@"Movie"]) // Movies
+    if ([self.showGroups[indexPath.section].showList[indexPath.row].showType isEqualToString:@"Movie"]) // Movies
     {
         // use the cells we have on the xib file for TVSeries
         static NSString *movieCellIdentifier = @"movieCell";
@@ -210,12 +240,12 @@
             cell = [tableView dequeueReusableCellWithIdentifier:movieCellIdentifier];
         }
         // Add the data to the UIElements
-        Show* currentMovie = self.showsArray[indexPath.section][indexPath.row];
+        Show* currentMovie = self.showGroups[indexPath.section].showList[indexPath.row];
         [cell setMovieCellWithMovie:currentMovie];
         
         return cell;
     }
-    else // if (indexPath.section == 1) TVSeries
+    else // TVSeries
     {
         // use the cells we have on the xib file for TVSeries
         static NSString *seriesCellIdentifier = @"seriesCell";
@@ -226,7 +256,7 @@
         }
         
         // Add the data to the UIElements
-        Show* currentTVSeries = self.showsArray[indexPath.section][indexPath.row];
+        Show* currentTVSeries = self.showGroups[indexPath.section].showList[indexPath.row];
         [cell setTVSeriesCellWithTVSeries:currentTVSeries];
         
         return cell;
@@ -245,48 +275,45 @@
     DetailsViewController *detailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsViewController"];
     
     // Pass the parameter to the new controller
-    if (indexPath.section == 0 && self.moviesData.count != 0) // Movies
-    {
-        detailsVC.showToBeDisplayed = self.moviesData[indexPath.row];
-        detailsVC.idToBeDisplayed = self.moviesData[indexPath.row].showId;
-        
-    }
-    else // if(indexPath.section == 1) // TV Series
-    {
-        detailsVC.showToBeDisplayed = self.tvSeriesData[indexPath.row];
-        detailsVC.idToBeDisplayed = self.tvSeriesData[indexPath.row].showId;
-    }
+    detailsVC.showToBeDisplayed = self.showGroups[indexPath.section].showList[indexPath.row];
+    detailsVC.idToBeDisplayed = self.showGroups[indexPath.section].showList[indexPath.row].showId;
     
     // Start the new ViewController
     [self.navigationController pushViewController:detailsVC animated:YES];
-    [self.sectionsTableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.listTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Search Bar Functions
+- (void)dismissKeyboard
+{
+    [self.searchBar resignFirstResponder];
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    // if we have text in the searchbar, we initiate the show search
     if ([searchBar.text length] != 0)
     {
-        [self.sectionLoader startAnimating];
+        [self.activityLoader startAnimating];
         [self getShowData];
     }
 }
 
 - (void)emptySearchBar
 {
-    self.sectionSearchBar.text = @"";
+    self.searchBar.text = @"";
 }
 
 - (IBAction)lockUnlockButtonPressed:(UIButton *)sender
 {
-    if (self.sectionsTableView.editing == YES)
+    if (self.listTableView.editing == YES)
     {
-        self.sectionsTableView.editing = NO;
+        self.listTableView.editing = NO;
         sender.titleLabel.text = @"Lock";
     }
     else
     {
-        self.sectionsTableView.editing = YES;
+        self.listTableView.editing = YES;
         sender.titleLabel.text = @"Unlock";
     }
 }

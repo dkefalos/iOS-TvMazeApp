@@ -6,38 +6,53 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="seriesCell" rowHeight="100" id="KGk-i7-Jjw" customClass="TVSeriesTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="381" height="90"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="seriesCell" rowHeight="118" id="KGk-i7-Jjw" customClass="TVSeriesTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="381" height="108"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="381" height="89.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="381" height="107.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lfc-pe-5i5">
-                        <rect key="frame" x="16" y="11" width="213" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mux-DS-cvE">
-                        <rect key="frame" x="16" y="58" width="130" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyx-0y-Mu0">
-                        <rect key="frame" x="298" y="11" width="67" height="68"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fyx-0y-Mu0">
+                        <rect key="frame" x="308" y="21" width="67" height="68"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="67" id="JJS-qk-Jq3"/>
+                            <constraint firstAttribute="height" constant="68" id="kXg-U5-Yry"/>
+                        </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lfc-pe-5i5">
+                        <rect key="frame" x="26" y="21" width="272" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Y2h-QW-ka3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mux-DS-cvE">
+                        <rect key="frame" x="26" y="68" width="272" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="fyx-0y-Mu0" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="10" id="P0G-eE-Gzj"/>
+                    <constraint firstItem="mux-DS-cvE" firstAttribute="trailing" secondItem="Lfc-pe-5i5" secondAttribute="trailing" id="Rul-SE-qTA"/>
+                    <constraint firstItem="fyx-0y-Mu0" firstAttribute="leading" secondItem="Lfc-pe-5i5" secondAttribute="trailing" constant="10" id="TEy-d7-AaA"/>
+                    <constraint firstItem="mux-DS-cvE" firstAttribute="leading" secondItem="Lfc-pe-5i5" secondAttribute="leading" id="Xco-ZW-cFQ"/>
+                    <constraint firstItem="fyx-0y-Mu0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="avx-Cn-DbW"/>
+                    <constraint firstItem="Lfc-pe-5i5" firstAttribute="top" secondItem="fyx-0y-Mu0" secondAttribute="top" id="v5p-Ge-mBa"/>
+                    <constraint firstItem="mux-DS-cvE" firstAttribute="bottom" secondItem="fyx-0y-Mu0" secondAttribute="bottom" id="yCA-Mb-1BD"/>
+                    <constraint firstItem="Lfc-pe-5i5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="yWv-UM-FBD"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
@@ -45,7 +60,7 @@
                 <outlet property="seriesCellRatingLabel" destination="mux-DS-cvE" id="dZw-sM-Uaa"/>
                 <outlet property="seriesCellTitleLabel" destination="Lfc-pe-5i5" id="L4A-gi-a2l"/>
             </connections>
-            <point key="canvasLocation" x="64.5" y="154"/>
+            <point key="canvasLocation" x="64.5" y="163"/>
         </tableViewCell>
     </objects>
 </document>

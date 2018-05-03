@@ -11,18 +11,18 @@
 @implementation Show
 
 // Initializer
-- (instancetype)initShowWithId:(NSString*)showId
-                      andTitle:(NSString*)showTitle
+- (instancetype)initShowWithId:(NSString *)showId
+                      andTitle:(NSString *)showTitle
                        andType:(NSString *)showType
-                    andSummary:(NSString*)showSummary
-                     andRating:(NSString*)showRating
-                   andImageURL:(NSString*)showImageURL
-                andBigImageURL:(NSString*)showBigImageURL
+                    andSummary:(NSString *)showSummary
+                     andRating:(NSString *)showRating
+                   andImageURL:(NSString *)showImageURL
+                andBigImageURL:(NSString *)showBigImageURL
 {
     
     self = [super init];
     if (self){
-        self.id = showId;
+        self.showId = showId;
         self.title = showTitle;
         self.showType = showType;
         self.summary = showSummary;

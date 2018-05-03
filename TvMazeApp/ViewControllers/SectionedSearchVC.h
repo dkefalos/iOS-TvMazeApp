@@ -25,6 +25,8 @@
 @property (strong, nonatomic) NSMutableArray <Show *> * sectionedShowsData;
 @property (strong, nonatomic) NSMutableArray <Show *> * moviesData;
 @property (strong, nonatomic) NSMutableArray <Show *> * tvSeriesData;
+@property (strong, nonatomic) NSMutableArray <NSMutableArray *> * showsArray;
+@property (strong, nonatomic) NSDictionary* showsDict;
 
 - (void)getShowData;
 - (void)emptySearchBar;

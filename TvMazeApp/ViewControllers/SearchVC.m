@@ -87,10 +87,6 @@
 - (void)getShowData
 {
     NSString * searchString = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    //NSString * searchString = [NSString makeURLFriendlyThisString:self.searchBar.text];
-    //NSString * searchString = self.searchBar.text;
-    //[searchString makeMeURLFriendly];
-    //NSLog(@"You Searched : %@", searchString);
     
     NSString *urlString = [NSString stringWithFormat: @"https://api.themoviedb.org/3/search/multi?api_key=6b2e856adafcc7be98bdf0d8b076851c&query=%@", searchString];
     NSURL * searchURL = [NSURL URLWithString:urlString];
@@ -103,9 +99,10 @@
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         NSArray * jsonObject = [json valueForKey:@"results"];
 
-        // Check if we have any data from the response
-        if (json.count == 0){ // If we got no results
-            [self showAlertForNoResults];
+        if (jsonObject.count == 0){ // If we got no results
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showAlertForNoResults];
+            });
         }
         else
         {
@@ -188,10 +185,11 @@
 
     // Pass the parameter to the new controller
     detailsVC.showToBeDisplayed = self.showsData[indexPath.row];
-    detailsVC.idToBeDisplayed = self.showsData[indexPath.row].id;
+    detailsVC.idToBeDisplayed = self.showsData[indexPath.row].showId;
 
     // Start the new ViewController
     [self.navigationController pushViewController:detailsVC animated:YES];
+    [self.listTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Search Bar Functions

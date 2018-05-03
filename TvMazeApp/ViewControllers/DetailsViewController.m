@@ -58,11 +58,11 @@
     // Distinguish between Movie and Series
     if ([show.showType isEqualToString:@"Movie"])
     {
-        [self setMovieExtraDetailsFromId:self.showToBeDisplayed.id];
+        [self setMovieExtraDetailsFromId:self.showToBeDisplayed.showId];
     }
     else if ([show.showType isEqualToString:@"TvSeries"])
     {
-        [self setSeriesExtraDetailsFromId:self.showToBeDisplayed.id];
+        [self setSeriesExtraDetailsFromId:self.showToBeDisplayed.showId];
     }
     else
     {

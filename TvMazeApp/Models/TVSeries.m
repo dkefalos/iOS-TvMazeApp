@@ -11,7 +11,7 @@
 @implementation TVSeries
 
 // Initializer
-- (instancetype)initSeriesWithId:(NSString*)showId
+- (instancetype)initSeriesWithId:(NSString *)showId
                         andTitle:(NSString *)showTitle
                          andType:(NSString *)showType
                       andSummary:(NSString *)showSummary
@@ -31,15 +31,15 @@
     return self;
 }
 
-- (void)addTVSeriesToShowList:(NSMutableArray*)showsData
-       withIterationObject:(NSDictionary*)iterationObj
+- (void)addTVSeriesToShowList:(NSMutableArray *)showsData
+       withIterationObject:(NSDictionary *)iterationObj
 {
-    NSString* currentId;
-    NSString* currentTitle;
-    NSString* currentSummary;
-    NSString* currentRating;
-    NSString* currentImageURL;
-    NSString* currentBigImageURL;
+    NSString *currentId;
+    NSString *currentTitle;
+    NSString *currentSummary;
+    NSString *currentRating;
+    NSString *currentImageURL;
+    NSString *currentBigImageURL;
     
     currentId = iterationObj[@"id"];
     currentSummary = ([iterationObj[@"overview"] isEqual:[NSNull null]] ? @"No Summary" : iterationObj[@"overview"]);
@@ -70,7 +70,7 @@
     [showsData addObject:curShow];
 }
 
-- (void)addDetailsToTVSeriesWithNoEpisodes:(NSString*) NoEpisodes
+- (void)addDetailsToTVSeriesWithNoEpisodes:(NSString *)NoEpisodes
 {
     self.NoEpisodes = NoEpisodes;
 }

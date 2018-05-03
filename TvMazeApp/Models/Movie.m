@@ -11,7 +11,7 @@
 @implementation Movie
 
 // Initializer
-- (instancetype)initMovieWithId:(NSString*)showId
+- (instancetype)initMovieWithId:(NSString *)showId
                        andTitle:(NSString *)showTitle
                         andType:(NSString *)showType
                      andSummary:(NSString *)showSummary
@@ -30,15 +30,15 @@
     return self;
 }
 
-- (void)addMovieToShowList:(NSMutableArray*)showsData
-       withIterationObject:(NSDictionary*)iterationObj
+- (void)addMovieToShowList:(NSMutableArray *)showsData
+       withIterationObject:(NSDictionary *)iterationObj
 {
-    NSString* currentId;
-    NSString* currentTitle;
-    NSString* currentSummary;
-    NSString* currentRating;
-    NSString* currentImageURL;
-    NSString* currentBigImageURL;
+    NSString *currentId;
+    NSString *currentTitle;
+    NSString *currentSummary;
+    NSString *currentRating;
+    NSString *currentImageURL;
+    NSString *currentBigImageURL;
     
     currentId = iterationObj[@"id"];
     currentSummary = ([iterationObj[@"overview"] isEqual:[NSNull null]] ? @"No Summary" : iterationObj[@"overview"]);
@@ -69,7 +69,7 @@
     [showsData addObject:curShow];
 }
 
-- (void)addDetailsToMovieWithBudget:(NSString*) showBudget
+- (void)addDetailsToMovieWithBudget:(NSString *)showBudget
 {
     self.budget = showBudget;
 }

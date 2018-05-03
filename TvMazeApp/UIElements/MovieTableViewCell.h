@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface MovieTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *movieCellImageView;
 @property (weak, nonatomic) IBOutlet UILabel *movieCellTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieCellRatingLabel;
 
+- (void)setMovieCellWithMovie:(Show*) currentMovie;
 
 @end

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4204531D2091B906001B8E5A /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4204531C2091B906001B8E5A /* TabBarViewController.m */; };
 		420453222091E921001B8E5A /* SectionedSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 420453212091E921001B8E5A /* SectionedSearchVC.m */; };
 		42054FB020862C97007B2285 /* Show+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 42054FAF20862C97007B2285 /* Show+Additions.m */; };
+		424EC66820999717000F474E /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EC66720999717000F474E /* Genre.m */; };
 		426E1DF22088E8CC002D68EA /* ImageFullScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */; };
 		426E1DF9208A3309002D68EA /* NSString+URLFriendly.m in Sources */ = {isa = PBXBuildFile; fileRef = 426E1DF8208A3309002D68EA /* NSString+URLFriendly.m */; };
 		4277767E2080B90C0098EB15 /* StripHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4277767D2080B90C0098EB15 /* StripHTML.m */; };
@@ -30,6 +30,8 @@
 		42A43979207E01B00067EF0C /* TvMazeAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43978207E01B00067EF0C /* TvMazeAppUITests.m */; };
 		42A43988207E02FA0067EF0C /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A43987207E02FA0067EF0C /* TableViewCell.m */; };
 		42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A4398A207E0C8D0067EF0C /* DetailsViewController.m */; };
+		42A944F52096F37100CB8A42 /* GenreSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A944F42096F37100CB8A42 /* GenreSearchVC.m */; };
+		42A944F82097086100CB8A42 /* ShowGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A944F72097086100CB8A42 /* ShowGroupModel.m */; };
 		42F96166208DBACB0007337B /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F96165208DBACB0007337B /* Alerts.m */; };
 		42FEDED920874EF1006ECC21 /* PickShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FEDED820874EF1006ECC21 /* PickShowVC.m */; };
 /* End PBXBuildFile section */
@@ -52,12 +54,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4204531B2091B906001B8E5A /* TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
-		4204531C2091B906001B8E5A /* TabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		420453202091E921001B8E5A /* SectionedSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionedSearchVC.h; sourceTree = "<group>"; };
 		420453212091E921001B8E5A /* SectionedSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionedSearchVC.m; sourceTree = "<group>"; };
 		42054FAE20862C97007B2285 /* Show+Additions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Show+Additions.h"; sourceTree = "<group>"; };
 		42054FAF20862C97007B2285 /* Show+Additions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Show+Additions.m"; sourceTree = "<group>"; };
+		424EC66620999717000F474E /* Genre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Genre.h; sourceTree = "<group>"; };
+		424EC66720999717000F474E /* Genre.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Genre.m; sourceTree = "<group>"; };
 		426E1DEF20887507002D68EA /* PickShowVCDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVCDelegate.h; sourceTree = "<group>"; };
 		426E1DF02088E8CC002D68EA /* ImageFullScreenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFullScreenVC.h; sourceTree = "<group>"; };
 		426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFullScreenVC.m; sourceTree = "<group>"; };
@@ -98,6 +100,10 @@
 		42A43987207E02FA0067EF0C /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		42A43989207E0C8D0067EF0C /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		42A4398A207E0C8D0067EF0C /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		42A944F32096F37100CB8A42 /* GenreSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenreSearchVC.h; sourceTree = "<group>"; };
+		42A944F42096F37100CB8A42 /* GenreSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenreSearchVC.m; sourceTree = "<group>"; };
+		42A944F62097086100CB8A42 /* ShowGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowGroupModel.h; sourceTree = "<group>"; };
+		42A944F72097086100CB8A42 /* ShowGroupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowGroupModel.m; sourceTree = "<group>"; };
 		42F96164208DBACB0007337B /* Alerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alerts.h; sourceTree = "<group>"; };
 		42F96165208DBACB0007337B /* Alerts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alerts.m; sourceTree = "<group>"; };
 		42FEDED720874EF1006ECC21 /* PickShowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickShowVC.h; sourceTree = "<group>"; };
@@ -203,6 +209,10 @@
 		42FEDED120871CC1006ECC21 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				42A944F62097086100CB8A42 /* ShowGroupModel.h */,
+				42A944F72097086100CB8A42 /* ShowGroupModel.m */,
+				424EC66620999717000F474E /* Genre.h */,
+				424EC66720999717000F474E /* Genre.m */,
 				42970769207F851B00D7E777 /* Show.h */,
 				4297076A207F851B00D7E777 /* Show.m */,
 				42054FAE20862C97007B2285 /* Show+Additions.h */,
@@ -218,12 +228,12 @@
 		42FEDED220871D0E006ECC21 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				42A944F32096F37100CB8A42 /* GenreSearchVC.h */,
+				42A944F42096F37100CB8A42 /* GenreSearchVC.m */,
 				420453202091E921001B8E5A /* SectionedSearchVC.h */,
 				420453212091E921001B8E5A /* SectionedSearchVC.m */,
 				42A43957207E01AE0067EF0C /* SearchVC.h */,
 				42A43958207E01AE0067EF0C /* SearchVC.m */,
-				4204531B2091B906001B8E5A /* TabBarViewController.h */,
-				4204531C2091B906001B8E5A /* TabBarViewController.m */,
 				426E1DF02088E8CC002D68EA /* ImageFullScreenVC.h */,
 				426E1DF12088E8CC002D68EA /* ImageFullScreenVC.m */,
 				426E1DF32089DE37002D68EA /* ImageFullScreenDelegate.h */,
@@ -384,10 +394,12 @@
 			files = (
 				42A43959207E01AE0067EF0C /* SearchVC.m in Sources */,
 				426E1DF22088E8CC002D68EA /* ImageFullScreenVC.m in Sources */,
-				4204531D2091B906001B8E5A /* TabBarViewController.m in Sources */,
+				42A944F52096F37100CB8A42 /* GenreSearchVC.m in Sources */,
+				42A944F82097086100CB8A42 /* ShowGroupModel.m in Sources */,
 				42970771207F854C00D7E777 /* TVSeries.m in Sources */,
 				42A4398B207E0C8D0067EF0C /* DetailsViewController.m in Sources */,
 				426E1DF9208A3309002D68EA /* NSString+URLFriendly.m in Sources */,
+				424EC66820999717000F474E /* Genre.m in Sources */,
 				4297076E207F853300D7E777 /* Movie.m in Sources */,
 				42A43988207E02FA0067EF0C /* TableViewCell.m in Sources */,
 				420453222091E921001B8E5A /* SectionedSearchVC.m in Sources */,
